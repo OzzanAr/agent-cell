@@ -4,15 +4,16 @@
 using namespace std;
 
 vector<vector<int>> generateGrid(int row, int collumn) {
-    vector<vector<int>> genedGrid;
+    vector<vector<int>> genedGrid(row, vector<int>(collumn, 0));
+
 
     return genedGrid;
 }
 
-void printGrid(vector<vector<int>> grid) {
-    for (int i = 0; i < grid.size(); i++) {
-        for (int j = 0; j < grid[i].size(); j++) {
-            cout << grid[i][j] << " ";
+void printGrid(vector<vector<int>> &grid) {
+    for (auto i : grid) {
+        for (auto j : i) {
+            cout << j << " ";
         }
         cout << endl;
     }
@@ -27,6 +28,5 @@ int main()
 
     vector<vector<int>> grid = generateGrid(row, col);
 
-    
-    
+    printGrid(grid);
 }
