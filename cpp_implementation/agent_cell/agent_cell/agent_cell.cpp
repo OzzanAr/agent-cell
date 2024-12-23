@@ -40,6 +40,8 @@ int main()
     printGrid(grid);
 
     for (auto i : gens) {
+        printf("Generation #%d", i);
+
 
     }
 
