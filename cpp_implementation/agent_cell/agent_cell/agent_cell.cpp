@@ -20,11 +20,13 @@ void printGrid(vector<vector<int>> &grid) {
         }
         cout << endl;
     }
-    cout << endl;
+	cout << endl;
 }
 
-void runGameOfLife(int rows, int cols, int generations) {
+void updateGrid() {
 
+
+    
 }
 
 int main()
@@ -37,12 +39,11 @@ int main()
 
     vector<vector<int>> grid = generateGrid(row, col);
 
-    printGrid(grid);
-
-    for (auto i : gens) {
-        printf("Generation #%d", i);
-
-
+    for (int i = 0; i < gens; i++) {
+        printf("Generation #%d", i + 1);
+        printGrid(grid);
+        updateGrid(grid);
     }
 
+    return 0;
 }
