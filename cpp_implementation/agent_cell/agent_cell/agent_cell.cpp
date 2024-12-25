@@ -23,7 +23,34 @@ void printGrid(vector<vector<int>> &grid) {
 	cout << endl;
 }
 
-void updateGrid() {
+int countNeighbours(vector<vector<int>> grid, int row, int col) {
+    int count = 0;
+    int deltaRow, deltaCol;
+    vector<vector<int>> neighbours = {
+        {-1, -1},
+        {-1, 0},
+        {-1, 1},
+        {0, -1},
+        {0, 1},
+        {1, -1},
+        {1, 0},
+        {1, 1},
+    };
+
+
+
+
+
+    return count;
+}
+
+
+void updateGrid(vector<vector<int>> grid) {
+    for (int i = 0; i < grid.size(); i++) {
+        for (int i = 0; i < grid[0].size(); i++) {
+
+        }
+    }
 
 
     
