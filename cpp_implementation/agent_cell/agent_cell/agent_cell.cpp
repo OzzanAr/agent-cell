@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <utility>
 
 using namespace std;
 
@@ -23,10 +24,10 @@ void printGrid(vector<vector<int>> &grid) {
 	cout << endl;
 }
 
-int countNeighbours(vector<vector<int>> grid, int row, int col) {
+int countNeighbours(const vector<vector<int>>& grid, int row, int col) {
     int count = 0;
-    int deltaRow, deltaCol;
-    vector<vector<int>> neighbours = {
+    int currentRow = 1, currentCol = 1;
+    vector<pair<int, int>> neighbors = {
         {-1, -1},
         {-1, 0},
         {-1, 1},
@@ -37,15 +38,23 @@ int countNeighbours(vector<vector<int>> grid, int row, int col) {
         {1, 1},
     };
 
+    for (const auto& neighbor : neighbors) {
+        int deltaRow = neighbor.first;
+        int deltaCol = neighbor.second;
+        int r = row + deltaRow;
+        int c = col + deltaCol;
 
-
-
+        if (r >= 0 && r < grid.size() && c >= 0 && c < grid[0].size()) {
+            count += grid[r][c];
+        }
+    }
 
     return count;
 }
 
 
 void updateGrid(vector<vector<int>> grid) {
+    int aliveNeighbors = 0;
     for (int i = 0; i < grid.size(); i++) {
         for (int i = 0; i < grid[0].size(); i++) {
 
