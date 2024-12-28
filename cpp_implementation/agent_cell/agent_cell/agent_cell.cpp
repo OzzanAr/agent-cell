@@ -53,16 +53,28 @@ int countNeighbours(const vector<vector<int>>& grid, int row, int col) {
 }
 
 
-void updateGrid(vector<vector<int>> grid) {
+vector<vector<int>> updateGrid(vector<vector<int>> grid) {
     int aliveNeighbors = 0;
-    for (int i = 0; i < grid.size(); i++) {
-        for (int i = 0; i < grid[0].size(); i++) {
+    vector<vector<int>> newGrid = grid;
 
+    for (int i = 0; i < grid.size(); i++) {
+        for (int j = 0; j < grid[0].size(); j++) {
+            aliveNeighbors = countNeighbours(grid, i, j);
+
+            if (grid.at(i).at(j) == 1) {
+                if (aliveNeighbors < 2 || aliveNeighbors > 3) {
+                    newGrid.at(i).at(j) = 0;
+                }
+            }
+            else {
+                if (aliveNeighbors == 3) {
+                    newGrid.at(i).at(j) = 1;
+                }
+            }
         }
     }
 
-
-    
+    return newGrid;
 }
 
 int main()
@@ -76,9 +88,9 @@ int main()
     vector<vector<int>> grid = generateGrid(row, col);
 
     for (int i = 0; i < gens; i++) {
-        printf("Generation #%d", i + 1);
+        printf("Generation #%d\n", i + 1);
         printGrid(grid);
-        updateGrid(grid);
+        grid = updateGrid(grid);
     }
 
     return 0;
