@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public GameManager manager;
     public Rigidbody2D rgdb2D;
     public float maxInitalAngel = 0.8f;
     public float movementSpeed = 4.0f;
@@ -35,6 +36,7 @@ public class Ball : MonoBehaviour
 
         if (scoreZone)
         {
+            manager.OnScoreZoneReached(scoreZone.id);
             ResetBall();
             InitPush();
         }
