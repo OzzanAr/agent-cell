@@ -3,10 +3,11 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public GameManager manager;
-    public Rigidbody2D rgdb2D;
+    public Rigidbody2D rb2d;
     public float maxInitalAngel = 0.8f;
     public float movementSpeed = 4.0f;
     public float maxStartY = 6f;
+    public float speedMulti = 1.2f;
 
     private float startX = 0f;
 
@@ -20,7 +21,7 @@ public class Ball : MonoBehaviour
         Vector2 direction = Random.value < 0.5f ? Vector2.left : Vector2.right;
 
         direction.y = Random.Range(-maxInitalAngel, maxInitalAngel);
-        rgdb2D.linearVelocity = direction * movementSpeed;
+        rb2d.linearVelocity = direction * movementSpeed;
     }
 
     private void ResetBall()
@@ -39,6 +40,16 @@ public class Ball : MonoBehaviour
             manager.OnScoreZoneReached(scoreZone.id);
             ResetBall();
             InitPush();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Paddle paddle = collision.collider.GetComponent<Paddle>();
+
+        if (paddle)
+        {
+            rb2d.linearVelocity *= speedMulti;
         }
     }
 }

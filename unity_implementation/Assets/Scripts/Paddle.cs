@@ -3,7 +3,7 @@ using UnityEngine;
 public class Paddle : MonoBehaviour
 {
     public Rigidbody2D rb2d;
-    public float id;
+    public int id;
     public float moveSpeed = 3f;
 
     private void Update()
