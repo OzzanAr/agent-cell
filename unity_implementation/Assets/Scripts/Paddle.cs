@@ -6,10 +6,25 @@ public class Paddle : MonoBehaviour
     public int id;
     public float moveSpeed = 3f;
 
+    private Vector3 startPosition;
+
+    private void Start()
+    {
+        startPosition = transform.position;
+        GameManager.instance.onReset += ResetPosition; 
+        
+    }
+
+
     private void Update()
     {
         float movement = ProcessInput();
         Move(movement);
+    }
+
+    private void ResetPosition()
+    {
+        transform.position = startPosition; 
     }
 
     private float ProcessInput()

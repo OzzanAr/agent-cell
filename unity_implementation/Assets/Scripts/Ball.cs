@@ -1,8 +1,8 @@
+using UnityEditor.Actions;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public GameManager manager;
     public Rigidbody2D rb2d;
     public float maxInitalAngel = 0.8f;
     public float movementSpeed = 4.0f;
@@ -14,6 +14,13 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         InitPush();
+        GameManager.instance.onReset += ResetBall; 
+    }
+
+    private void ResetBall()
+    {
+        ResetBallPosition();
+        InitPush();
     }
 
     private void InitPush()
@@ -24,7 +31,7 @@ public class Ball : MonoBehaviour
         rb2d.linearVelocity = direction * movementSpeed;
     }
 
-    private void ResetBall()
+    private void ResetBallPosition()
     {
         float postitonY = Random.Range(-maxStartY, maxStartY);
         Vector2 position = new Vector2(startX, postitonY);
@@ -37,9 +44,7 @@ public class Ball : MonoBehaviour
 
         if (scoreZone)
         {
-            manager.OnScoreZoneReached(scoreZone.id);
-            ResetBall();
-            InitPush();
+            GameManager.instance.OnScoreZoneReached(scoreZone.id);
         }
     }
 
