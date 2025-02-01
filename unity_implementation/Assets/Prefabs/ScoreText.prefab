@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1444575717287446971}
   - component: {fileID: -7800005945107986348}
   - component: {fileID: 5479713257389847541}
+  - component: {fileID: 6004586051163072789}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -59,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 5479713257389847541}
+  animator: {fileID: 6004586051163072789}
 --- !u!114 &5479713257389847541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +90,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4284506208
   m_fontColor: {r: 0.3773585, g: 0.3755785, b: 0.3755785, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -150,3 +152,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &6004586051163072789
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4030016602498877604}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c4ef956d6be8d974a857ef3dc0fb1d1d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

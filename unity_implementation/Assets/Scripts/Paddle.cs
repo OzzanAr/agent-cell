@@ -12,7 +12,6 @@ public class Paddle : MonoBehaviour
     {
         startPosition = transform.position;
         GameManager.instance.onReset += ResetPosition; 
-        
     }
 
 

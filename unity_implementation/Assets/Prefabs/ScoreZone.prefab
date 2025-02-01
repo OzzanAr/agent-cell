@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8831661892273802040}
   - component: {fileID: 3379560355216411569}
   - component: {fileID: 4408851942171091885}
+  - component: {fileID: 3683909628841776866}
   m_Layer: 0
   m_Name: ScoreZone
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513cddc92aa3e0c4eaf56583e9389566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
 --- !u!61 &4408851942171091885
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -91,3 +93,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &3683909628841776866
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6053540281445172532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 46d3a272c4a57434ead4b1970c529059, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

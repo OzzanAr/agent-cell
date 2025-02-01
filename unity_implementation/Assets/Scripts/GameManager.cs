@@ -29,12 +29,15 @@ public class GameManager : MonoBehaviour
         {
             player1Score++;
             scoreTextLeft.SetScore(player1Score);
+            scoreTextLeft.Highlight();
         }
         
         if (id == 2)
         {
             player2Score++;
             scoreTextRight.SetScore(player2Score);
+            scoreTextRight.Highlight();
         }
     }
+
 }
