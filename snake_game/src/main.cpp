@@ -8,6 +8,16 @@ using namespace std;
 
 double lastUpdateTime = 0;
 
+bool IsElementInDeque(Vector2 element, deque <Vector2> deque) {
+    for(unsigned int i = 0; i < deque.size(); i++) {
+        if(Vector2Equals(deque[i], element)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool EventTriggered(double interval)
 {
     double currentTime = GetTime();
@@ -26,12 +36,12 @@ public:
     Vector2 position;
     Texture2D texture;
 
-    Food()
+    Food(deque<Vector2> snakeBody)
     {
         Image img = LoadImage("assets/food.png");
         texture = LoadTextureFromImage(img);
         UnloadImage(img);
-        position = GenerateRandomPosition();
+        position = GenerateRandomPosition(snakeBody);
     }
 
     ~Food()
@@ -44,12 +54,22 @@ public:
         DrawTexture(texture, position.x * cellSize, position.y * cellSize, WHITE);
     }
 
-    Vector2 GenerateRandomPosition()
-    {
+    Vector2 GenerateRandomCell() {
         float x = GetRandomValue(0, cellCount - 1);
         float y = GetRandomValue(0, cellCount - 1);
+        return {x, y};
+    }
 
-        return Vector2{x, y};
+    Vector2 GenerateRandomPosition(deque<Vector2> snakeBody)
+    {
+        Vector2 position = GenerateRandomCell();
+
+        while (IsElementInDeque(position, snakeBody))
+        {
+            position = GenerateRandomCell();
+        }
+
+        return position;
     }
 };
 
@@ -58,6 +78,7 @@ class Snake
 public:
     deque<Vector2> body = {Vector2{6, 9}, Vector2{5, 9}, Vector2{4, 9}};
     Vector2 direction = {1, 0};
+    bool addSegment = false;
 
     void Draw()
     {
@@ -84,7 +105,7 @@ public:
 class Game {
 public:
     Snake snake = Snake();
-    Food food = Food();
+    Food food = Food(snake.body);
 
     void Draw() {
         food.Draw();
@@ -93,7 +114,16 @@ public:
 
     void Update() {
         snake.Update();  
+        CheckFoodCollision();
     }
+
+    void CheckFoodCollision() {
+        if(Vector2Equals(snake.body[0], food.position)) {
+            food.position = food.GenerateRandomPosition(snake.body);
+            snake.body.push_back(snake.body.back());
+        }
+    }
+
 };
 
 void CheckMovement(Snake &snake){
