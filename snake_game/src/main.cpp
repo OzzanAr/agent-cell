@@ -8,9 +8,12 @@ using namespace std;
 
 double lastUpdateTime = 0;
 
-bool IsElementInDeque(Vector2 element, deque <Vector2> deque) {
-    for(unsigned int i = 0; i < deque.size(); i++) {
-        if(Vector2Equals(deque[i], element)) {
+bool IsElementInDeque(Vector2 element, deque<Vector2> deque)
+{
+    for (unsigned int i = 0; i < deque.size(); i++)
+    {
+        if (Vector2Equals(deque[i], element))
+        {
             return true;
         }
     }
@@ -54,7 +57,8 @@ public:
         DrawTexture(texture, position.x * cellSize, position.y * cellSize, WHITE);
     }
 
-    Vector2 GenerateRandomCell() {
+    Vector2 GenerateRandomCell()
+    {
         float x = GetRandomValue(0, cellCount - 1);
         float y = GetRandomValue(0, cellCount - 1);
         return {x, y};
@@ -99,34 +103,44 @@ public:
     {
         body.pop_back();
         body.push_front(Vector2Add(body[0], direction));
+        if (addSegment)
+        {
+            body.push_back(body.back());
+            addSegment = false;
+        }
     }
 };
 
-class Game {
+class Game
+{
 public:
     Snake snake = Snake();
     Food food = Food(snake.body);
 
-    void Draw() {
+    void Draw()
+    {
         food.Draw();
         snake.Draw();
     }
 
-    void Update() {
-        snake.Update();  
+    void Update()
+    {
+        snake.Update();
         CheckFoodCollision();
     }
 
-    void CheckFoodCollision() {
-        if(Vector2Equals(snake.body[0], food.position)) {
+    void CheckFoodCollision()
+    {
+        if (Vector2Equals(snake.body[0], food.position))
+        {
             food.position = food.GenerateRandomPosition(snake.body);
-            snake.body.push_back(snake.body.back());
+            snake.addSegment = true;
         }
     }
-
 };
 
-void CheckMovement(Snake &snake){
+void CheckMovement(Snake &snake)
+{
     if (IsKeyPressed(KEY_UP) && snake.direction.y != 1)
     {
         snake.direction = {0, -1};
