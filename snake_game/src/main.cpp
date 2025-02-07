@@ -99,14 +99,22 @@ public:
         }
     }
 
+    void Reset()
+    {
+        body = {Vector2{6, 9}, Vector2{5, 9}, Vector2{4, 9}};
+        direction = {1, 0};
+    }
+
     void Update()
     {
-        body.pop_back();
         body.push_front(Vector2Add(body[0], direction));
         if (addSegment)
         {
-            body.push_back(body.back());
             addSegment = false;
+        }
+        else
+        {
+            body.pop_back();
         }
     }
 };
@@ -116,6 +124,7 @@ class Game
 public:
     Snake snake = Snake();
     Food food = Food(snake.body);
+    bool isRunning = true;
 
     void Draw()
     {
@@ -125,8 +134,20 @@ public:
 
     void Update()
     {
-        snake.Update();
-        CheckFoodCollision();
+        if (isRunning)
+        {
+            snake.Update();
+            CheckFoodCollision();
+            CheckEdgeCollision();
+            CheckTailCollision();
+        }
+    }
+
+    void GameOver()
+    {
+        snake.Reset();
+        food.position = food.GenerateRandomPosition(snake.body);
+        isRunning = false;
     }
 
     void CheckFoodCollision()
@@ -137,36 +158,69 @@ public:
             snake.addSegment = true;
         }
     }
+
+    void CheckEdgeCollision()
+    {
+        if (snake.body[0].x == cellCount || snake.body[0].x == -1)
+        {
+            GameOver();
+        }
+
+        if (snake.body[0].y == cellCount || snake.body[0].y == -1)
+        {
+            GameOver();
+        }
+    }
+
+    void CheckTailCollision()
+    {
+        deque<Vector2> headlessBody = snake.body;
+        headlessBody.pop_front();
+        if (IsElementInDeque(snake.body[0], headlessBody))
+        {
+            GameOver();
+        }
+    }
 };
 
-void CheckMovement(Snake &snake)
+void CheckMovement(Game &game)
 {
-    if (IsKeyPressed(KEY_UP) && snake.direction.y != 1)
+    if (IsKeyPressed(KEY_UP) && game.snake.direction.y != 1)
     {
-        snake.direction = {0, -1};
+        game.snake.direction = {0, -1};
+        game.isRunning = true;
     }
-    else if (IsKeyPressed(KEY_DOWN) && snake.direction.y != -1)
+    else if (IsKeyPressed(KEY_DOWN) && game.snake.direction.y != -1)
     {
-        snake.direction = {0, 1};
+        game.snake.direction = {0, 1};
+        game.isRunning = true;
     }
-    else if (IsKeyPressed(KEY_LEFT) && snake.direction.x != 1)
+    else if (IsKeyPressed(KEY_LEFT) && game.snake.direction.x != 1)
     {
-        snake.direction = {-1, 0};
+        game.snake.direction = {-1, 0};
+        game.isRunning = true;
     }
-    else if (IsKeyPressed(KEY_RIGHT) && snake.direction.x != -1)
+    else if (IsKeyPressed(KEY_RIGHT) && game.snake.direction.x != -1)
     {
-        snake.direction = {1, 0};
+        game.snake.direction = {1, 0};
+        game.isRunning = true;
     }
 }
 
 int main()
 {
     cout << "\nRunning Snake Game\n";
-    int screenSize = cellSize * cellCount;
+    int screenSize = 2 * offset + cellSize * cellCount;
     InitWindow(screenSize, screenSize, "Sanke Game");
     SetTargetFPS(60);
 
     Game game = Game();
+
+    Rectangle borderRectangle = {
+        (float)offset - 5,
+        (float)offset - 5,
+        (float)cellSize * cellCount + 10,
+        (float)cellSize * cellCount + 10};
 
     while (!WindowShouldClose())
     {
@@ -177,9 +231,10 @@ int main()
             game.Update();
         }
 
-        CheckMovement(game.snake);
+        CheckMovement(game);
 
         ClearBackground(green);
+        DrawRectangleLinesEx(borderRectangle, 5, darkGreen);
         game.Draw();
 
         EndDrawing();
