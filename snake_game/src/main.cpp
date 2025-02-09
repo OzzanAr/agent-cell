@@ -130,8 +130,8 @@ public:
     Game() 
     {
         InitAudioDevice();
-        eatSound = LoadSound("Sounds/eat.mp3");
-        wallSound = LoadSound("Sounds/wall.mp3");
+        eatSound = LoadSound("audio/eat.mp3");
+        wallSound = LoadSound("audio/wall.mp3");
     }
 
     ~Game() {
@@ -253,7 +253,7 @@ int main()
         ClearBackground(green);
         DrawRectangleLinesEx(borderRectangle, 5, darkGreen);
         DrawText("Snake", offset - 5, 20, 40, darkGreen);
-        DrawText(TextFormat("%i", game.score), offset - 5, offset + cellSize * cellCount + 10, 40, darkGreen);
+        DrawText(TextFormat("%i", game.score), cellSize * cellCount + 70, 20, 40, darkGreen);
         game.Draw();
 
         EndDrawing();
