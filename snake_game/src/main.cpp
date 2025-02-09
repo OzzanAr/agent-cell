@@ -53,7 +53,7 @@ public:
 
     void Draw()
     {
-        DrawTexture(texture, position.x * cellSize, position.y * cellSize, WHITE);
+        DrawTexture(texture, offset + position.x * cellSize, offset + position.y * cellSize, WHITE);
     }
 
     Vector2 GenerateRandomCell()
@@ -90,8 +90,8 @@ public:
             float x = body[i].x;
             float y = body[i].y;
             Rectangle segment = {
-                x * cellSize,
-                y * cellSize,
+                offset + x * cellSize,
+                offset + y * cellSize,
                 (float)cellSize,
                 (float)cellSize};
             DrawRectangleRounded(segment, 0.5, 6, darkGreen);
@@ -124,6 +124,20 @@ public:
     Snake snake = Snake();
     Food food = Food(snake.body);
     bool isRunning = true;
+    int score = 0;
+    Sound eatSound, wallSound;
+
+    Game() 
+    {
+        InitAudioDevice();
+        eatSound = LoadSound("Sounds/eat.mp3");
+        wallSound = LoadSound("Sounds/wall.mp3");
+    }
+
+    ~Game() {
+        UnloadSound(eatSound);
+        UnloadSound(wallSound);
+    }
 
     void Draw()
     {
@@ -147,6 +161,8 @@ public:
         snake.Reset();
         food.position = food.GenerateRandomPosition(snake.body);
         isRunning = false;
+        score = 0;
+        PlaySound(wallSound);
     }
 
     void CheckFoodCollision()
@@ -155,6 +171,8 @@ public:
         {
             food.position = food.GenerateRandomPosition(snake.body);
             snake.addSegment = true;
+            score++;
+            PlaySound(eatSound);
         }
     }
 
@@ -234,6 +252,8 @@ int main()
 
         ClearBackground(green);
         DrawRectangleLinesEx(borderRectangle, 5, darkGreen);
+        DrawText("Snake", offset - 5, 20, 40, darkGreen);
+        DrawText(TextFormat("%i", game.score), offset - 5, offset + cellSize * cellCount + 10, 40, darkGreen);
         game.Draw();
 
         EndDrawing();
