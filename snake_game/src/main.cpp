@@ -4,11 +4,10 @@
 #include <deque>
 #include "globals.h"
 
-using namespace std;
 
 double lastUpdateTime = 0;
 
-bool IsElementInDeque(Vector2 element, deque<Vector2> deque)
+bool IsElementInDeque(Vector2 element, std::deque<Vector2> deque)
 {
     for (unsigned int i = 0; i < deque.size(); i++)
     {
@@ -39,7 +38,7 @@ public:
     Vector2 position;
     Texture2D texture;
 
-    Food(deque<Vector2> snakeBody)
+    Food(std::deque<Vector2> snakeBody)
     {
         Image img = LoadImage("assets/food.png");
         texture = LoadTextureFromImage(img);
@@ -64,7 +63,7 @@ public:
         return {x, y};
     }
 
-    Vector2 GenerateRandomPosition(deque<Vector2> snakeBody)
+    Vector2 GenerateRandomPosition(std::deque<Vector2> snakeBody)
     {
         Vector2 position = GenerateRandomCell();
 
@@ -80,7 +79,7 @@ public:
 class Snake
 {
 public:
-    deque<Vector2> body = {Vector2{6, 9}, Vector2{5, 9}, Vector2{4, 9}};
+    std::deque<Vector2> body = {Vector2{6, 9}, Vector2{5, 9}, Vector2{4, 9}};
     Vector2 direction = {1, 0};
     bool addSegment = false;
 
@@ -174,7 +173,7 @@ public:
 
     void CheckTailCollision()
     {
-        deque<Vector2> headlessBody = snake.body;
+        std::deque<Vector2> headlessBody = snake.body;
         headlessBody.pop_front();
         if (IsElementInDeque(snake.body[0], headlessBody))
         {
@@ -209,7 +208,7 @@ void CheckMovement(Game &game)
 
 int main()
 {
-    cout << "\nRunning Snake Game\n";
+    std::cout << "\nRunning Snake Game\n";
     int screenSize = 2 * offset + cellSize * cellCount;
     InitWindow(screenSize, screenSize, "Sanke Game");
     SetTargetFPS(60);
