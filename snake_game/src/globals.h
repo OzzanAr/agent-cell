@@ -1,11 +1,10 @@
 #pragma once
 #include <raylib.h>
 
-// Size of game screen 30 * 25 = 750
-constexpr int cellSize = 30;
-constexpr int cellCount = 25;
+constexpr int WINDOW_WIDTH = 750;
+constexpr int WINDOW_HEIGHT = 750;
 
-constexpr int offset = 75;
+constexpr int TARGET_FPS = 12;
 
 constexpr Color green = {173, 204, 96, 255};
-constexpr Color darkGreen = {43, 51, 24, 255};
+constexpr Color GREY = {29, 29, 29, 255};
