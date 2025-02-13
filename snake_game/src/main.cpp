@@ -1,13 +1,8 @@
 #include <iostream>
 #include <raylib.h>
 #include <raymath.h>
-#include <deque>
 #include "globals.h"
-
-class Game
-{
-public:
-};
+#include "grid.hpp"
 
 int main()
 {
@@ -16,7 +11,7 @@ int main()
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Agent Cell");
     SetTargetFPS(TARGET_FPS);
 
-    Game game = Game();
+    Grid grid(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE);
 
     while (!WindowShouldClose())
     {
@@ -26,7 +21,8 @@ int main()
 
         // Drawing
         BeginDrawing();
-        ClearBackground(CUSTOM_GREY);
+        ClearBackground(GRAY);
+        grid.Draw();
         EndDrawing();
     }
 
