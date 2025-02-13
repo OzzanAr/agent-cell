@@ -26,7 +26,7 @@ int main()
 
         // Drawing
         BeginDrawing();
-        ClearBackground(GREY);
+        ClearBackground(CUSTOM_GREY);
         EndDrawing();
     }
 
