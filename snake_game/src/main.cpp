@@ -2,7 +2,7 @@
 #include <raylib.h>
 #include <raymath.h>
 #include "globals.h"
-#include "grid.hpp"
+#include "simulation.hpp"
 
 int main()
 {
@@ -11,7 +11,8 @@ int main()
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Agent Cell");
     SetTargetFPS(TARGET_FPS);
 
-    Grid grid(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE);
+    Simulation simulation(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE);
+    simulation.SetCellValue(5, 2999999999, 1);
 
     while (!WindowShouldClose())
     {
@@ -22,7 +23,7 @@ int main()
         // Drawing
         BeginDrawing();
         ClearBackground(GRAY);
-        grid.Draw();
+        simulation.Draw();
         EndDrawing();
     }
 

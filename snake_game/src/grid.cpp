@@ -16,8 +16,27 @@ void Grid::Draw()
 
 void Grid::SetCellValue(int row, int column, int value)
 {
-  if (row >= 0 && row < rows && column >= 0 && column < cols)
+  if (IsWithinBounds(row, column))
   {
     cells[row][column] = value;
   }
+}
+
+int Grid::GetCellValue(int row, int column)
+{
+  if (IsWithinBounds(row, column))
+  {
+    return cells[row][column];
+  }
+  return 0;
+}
+
+bool Grid::IsWithinBounds(int row, int column)
+{
+
+  if (row >= 0 && row < rows && column >= 0 && column < cols)
+  {
+    return true;
+  }
+  return false;
 }
