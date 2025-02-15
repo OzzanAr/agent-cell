@@ -7,6 +7,7 @@
 int main()
 {
     std::cout << "\nRunning Agent Cell\n";
+    bool isEnterPressed = false;
 
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Agent Cell");
     SetTargetFPS(TARGET_FPS);
@@ -16,6 +17,21 @@ int main()
     while (!WindowShouldClose())
     {
         // Event Handling
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            if (isEnterPressed)
+            {
+                simulation.Stop();
+                SetWindowTitle("Agent Cell - Paused");
+                isEnterPressed = false;
+            }
+            else
+            {
+                simulation.Start();
+                SetWindowTitle("Agent Cell - Running");
+                isEnterPressed = true;
+            }
+        }
 
         /// Updating State
         simulation.Update();
