@@ -9,6 +9,42 @@ void Simulation::Draw()
   grid.Draw();
 }
 
+void Simulation::Update()
+{
+  for (int row = 0; row < grid.GetRows(); row++)
+  {
+    for (int column = 0; column < grid.GetColumns(); column++)
+    {
+      int liveNeighbors = CountLiveNeighbors(row, column);
+      int cellValue = grid.GetCellValue(row, column);
+
+      if (cellValue == 1)
+      {
+        if (liveNeighbors > 3 || liveNeighbors < 2)
+        {
+          tempGrid.SetCellValue(row, column, 0);
+        }
+        else
+        {
+          tempGrid.SetCellValue(row, column, 1);
+        }
+      }
+      else
+      {
+        if (liveNeighbors == 3)
+        {
+          tempGrid.SetCellValue(row, column, 1);
+        }
+        else
+        {
+          tempGrid.SetCellValue(row, column, 0);
+        }
+      }
+    }
+  }
+  grid = tempGrid;
+}
+
 void Simulation::SetCellValue(int row, int column, int value)
 {
   grid.SetCellValue(row, column, value);

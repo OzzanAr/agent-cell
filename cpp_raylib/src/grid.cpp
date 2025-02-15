@@ -40,3 +40,15 @@ bool Grid::IsWithinBounds(int row, int column)
   }
   return false;
 }
+
+void Grid::FillRandomly()
+{
+  for (int row = 0; row < rows; row++)
+  {
+    for (int col = 0; col < cols; col++)
+    {
+      int randValue = GetRandomValue(0, 4);
+      cells[row][col] = (randValue == 4) ? 1 : 0;
+    }
+  }
+}
