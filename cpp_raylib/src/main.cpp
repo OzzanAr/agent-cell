@@ -7,30 +7,52 @@
 int main()
 {
     std::cout << "\nRunning Agent Cell\n";
-    bool isEnterPressed = false;
+    bool isSpacePressed = false;
 
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Agent Cell");
     SetTargetFPS(TARGET_FPS);
+    int modifiedFps = TARGET_FPS;
 
     Simulation simulation(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE);
 
     while (!WindowShouldClose())
     {
         // Event Handling
-        if (IsKeyPressed(KEY_ENTER))
+        if (IsKeyPressed(KEY_SPACE))
         {
-            if (isEnterPressed)
+            if (isSpacePressed)
             {
                 simulation.Stop();
                 SetWindowTitle("Agent Cell - Paused");
-                isEnterPressed = false;
+                isSpacePressed = false;
             }
             else
             {
                 simulation.Start();
                 SetWindowTitle("Agent Cell - Running");
-                isEnterPressed = true;
+                isSpacePressed = true;
             }
+        }
+        else if (IsKeyPressed(KEY_F))
+        {
+            modifiedFps += 2;
+            SetTargetFPS(modifiedFps);
+        }
+        else if (IsKeyPressed(KEY_S))
+        {
+            if (modifiedFps > 5)
+            {
+                modifiedFps -= 2;
+                SetTargetFPS(modifiedFps);
+            }
+        }
+        else if (IsKeyPressed(KEY_C))
+        {
+            simulation.ClearGrid();
+        }
+        else if (IsKeyPressed(KEY_R))
+        {
+            simulation.CreateRandomState();
         }
 
         /// Updating State

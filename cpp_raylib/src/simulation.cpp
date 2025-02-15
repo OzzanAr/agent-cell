@@ -76,3 +76,19 @@ int Simulation::CountLiveNeighbors(int row, int column)
 
   return liveNeighbors;
 }
+
+void Simulation::ClearGrid()
+{
+  if (!IsRunning())
+  {
+    grid.Clear();
+  }
+}
+
+void Simulation::CreateRandomState()
+{
+  if (!IsRunning())
+  {
+    grid.FillRandomly();
+  }
+}

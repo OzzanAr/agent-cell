@@ -13,6 +13,7 @@ public:
   int GetRows() { return rows; }
   int GetColumns() { return cols; }
   void FillRandomly();
+  void Clear();
 
 private:
   int rows;

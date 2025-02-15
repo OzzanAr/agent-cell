@@ -5,10 +5,8 @@ class Simulation
 {
 public:
   Simulation(int width, int height, int cellSize)
-      : grid(width, height, cellSize), tempGrid(width, height, cellSize), run(false)
-  {
-    grid.FillRandomly();
-  };
+      : grid(width, height, cellSize), tempGrid(width, height, cellSize), run(false) {
+        };
   void Draw();
   void Update();
   void SetCellValue(int row, int column, int value);
@@ -16,6 +14,8 @@ public:
   bool IsRunning() { return run; }
   void Start() { run = true; }
   void Stop() { run = false; }
+  void ClearGrid();
+  void CreateRandomState();
 
 private:
   Grid grid;
