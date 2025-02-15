@@ -14,6 +14,7 @@ public:
   int GetColumns() { return cols; }
   void FillRandomly();
   void Clear();
+  void ToggleCellValue(int row, int column);
 
 private:
   int rows;

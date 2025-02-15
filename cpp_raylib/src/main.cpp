@@ -18,6 +18,14 @@ int main()
     while (!WindowShouldClose())
     {
         // Event Handling
+        if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+        {
+            Vector2 mousePos = GetMousePosition();
+            int row = mousePos.y / CELL_SIZE;
+            int col = mousePos.x / CELL_SIZE;
+            simulation.ToggleCell(row, col);
+        }
+
         if (IsKeyPressed(KEY_SPACE))
         {
             if (isSpacePressed)
