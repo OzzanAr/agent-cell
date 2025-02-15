@@ -14,7 +14,7 @@ void Simulation::SetCellValue(int row, int column, int value)
   grid.SetCellValue(row, column, value);
 }
 
-void Simulation::CountLiveNeighbors(int row, int column)
+int Simulation::CountLiveNeighbors(int row, int column)
 {
   int liveNeighbors = 0;
   std::vector<std::pair<int, int>> neighborOffsets = {
@@ -30,8 +30,10 @@ void Simulation::CountLiveNeighbors(int row, int column)
 
   for (const auto &offset : neighborOffsets)
   {
-    int neighborRow = row + offset.first;
-    int neighborColumn = column + offset.second;
+    int neighborRow = (row + offset.first + grid.GetRows()) % grid.GetRows();
+    int neighborColumn = (column + offset.second + grid.GetColumns()) % grid.GetColumns();
     liveNeighbors += grid.GetCellValue(neighborRow, neighborColumn);
   }
+
+  return liveNeighbors;
 }

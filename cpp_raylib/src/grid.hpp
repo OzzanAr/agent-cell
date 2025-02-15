@@ -10,6 +10,8 @@ public:
   void SetCellValue(int row, int column, int value);
   int GetCellValue(int row, int column);
   bool IsWithinBounds(int row, int column);
+  int GetRows() { return rows; }
+  int GetColumns() { return cols; }
 
 private:
   int rows;
