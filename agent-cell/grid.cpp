@@ -9,7 +9,9 @@ void Grid::Draw()
         for (int col = 0; col < cols; col++)
         {
             Color cellColor = cells[row][col] == 1 ? CUSTOM_GREEN : CUSTOM_GREY;
-            DrawRectangle(col * cellSize, row * cellSize, cellSize - 1, cellSize - 1, cellColor);
+
+            // Minus one on the width and height of the CellSize when drawing the rectangles to display grid lines.
+            DrawRectangle(col * cellSize + offsetLeft, row * cellSize + offsetTop, cellSize - 1, cellSize - 1, cellColor);
         }
     }
 }

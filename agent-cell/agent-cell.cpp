@@ -6,6 +6,7 @@
 #include <raymath.h>
 #include "globals.hpp"
 #include "simulation.hpp"
+#include <algorithm>
 
 int main()
 {
@@ -14,17 +15,18 @@ int main()
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Agent Cell");
     SetTargetFPS(TARGET_FPS);
     int modifiedFps = TARGET_FPS;
+    int row, col;
 
-    Simulation simulation(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE);
+    int minCellSize = std::min(GRID_WIDTH / GRID_COLUMN_COUNT, GRID_HEIGHT / GRID_ROW_COUNT);
+
+    Simulation simulation(GRID_ROW_COUNT, GRID_COLUMN_COUNT, minCellSize);
 
     while (!WindowShouldClose())
     {
         // Event Handling
         if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
         {
-            Vector2 mousePos = GetMousePosition();
-            int row = mousePos.y / CELL_SIZE;
-            int col = mousePos.x / CELL_SIZE;
+            simulation.CalculateMouseOffset(row, col);
             simulation.ToggleCell(row, col);
         }
 

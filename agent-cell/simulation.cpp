@@ -100,3 +100,10 @@ void Simulation::ToggleCell(int row, int column)
         grid.ToggleCellValue(row, column);
     }
 }
+
+void Simulation::CalculateMouseOffset(int& row, int& col)
+{
+	Vector2 mousePos = GetMousePosition();
+    col = (mousePos.x - grid.GetOffsetLeft()) / grid.GetCellSize();
+	row = (mousePos.y - grid.GetOffsetTop()) / grid.GetCellSize();
+}
