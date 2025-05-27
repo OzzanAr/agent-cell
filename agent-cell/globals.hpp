@@ -4,13 +4,11 @@
 constexpr int WINDOW_WIDTH = 750;
 constexpr int WINDOW_HEIGHT = 750;
 
-constexpr int GRID_WIDTH = 500;
+constexpr int GRID_WIDTH = WINDOW_WIDTH;
 constexpr int GRID_HEIGHT = 500;
 
 constexpr int GRID_COLUMN_COUNT = 40;
 constexpr int GRID_ROW_COUNT = 40;
-
-constexpr int CELL_SIZE = 25;
 
 constexpr int TARGET_FPS = 12;
 
