@@ -17,9 +17,9 @@ int main()
     int modifiedFps = TARGET_FPS;
     int row, col;
 
-    int minCellSize = std::min(GRID_WIDTH / GRID_COLUMN_COUNT, GRID_HEIGHT / GRID_ROW_COUNT);
+    int cellSize = GRID_WIDTH / GRID_COLUMN_COUNT;
 
-    Simulation simulation(GRID_ROW_COUNT, GRID_COLUMN_COUNT, minCellSize);
+    Simulation simulation(GRID_ROW_COUNT, GRID_COLUMN_COUNT, cellSize);
 
     while (!WindowShouldClose())
     {
