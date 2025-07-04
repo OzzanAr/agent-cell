@@ -1,10 +1,10 @@
 #pragma once
 #include <raylib.h>
 
-constexpr int WINDOW_WIDTH = 750;
-constexpr int WINDOW_HEIGHT = 750;
+constexpr int WINDOW_WIDTH = 1500;
+constexpr int WINDOW_HEIGHT = 1200;
 
-constexpr int GRID_WIDTH = WINDOW_WIDTH;
+constexpr int GRID_WIDTH = 1000;
 constexpr int GRID_HEIGHT = 500;
 
 constexpr int GRID_COLUMN_COUNT = 40;
