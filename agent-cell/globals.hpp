@@ -7,8 +7,8 @@ constexpr int WINDOW_HEIGHT = 1200;
 constexpr int GRID_WIDTH = 1000;
 constexpr int GRID_HEIGHT = 500;
 
-constexpr int GRID_COLUMN_COUNT = 40;
-constexpr int GRID_ROW_COUNT = 40;
+constexpr int GRID_COLUMN_COUNT = 32; // x
+constexpr int GRID_ROW_COUNT = 60; // y
 
 constexpr int TARGET_FPS = 12;
 
