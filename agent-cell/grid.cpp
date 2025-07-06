@@ -73,3 +73,11 @@ void Grid::ToggleCellValue(int row, int column)
         cells[row][column] = !cells[row][column];
     }
 }
+
+void Grid::UpdateGridDimensons(int newWidth, int newHeight, int newCellSize)
+{
+    this->rows = newHeight;
+    this->cols = newWidth;
+    this->cellSize = newCellSize;
+    this->cells = std::vector<std::vector<int>>(newHeight, std::vector<int>(newWidth, 0));
+}

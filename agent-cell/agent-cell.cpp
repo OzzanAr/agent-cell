@@ -8,6 +8,18 @@
 #include "simulation.hpp"
 #include <algorithm>
 
+void piss(int &cellSize, int gridCols, int gridRows) {
+    cellSize = WINDOW_WIDTH + WINDOW_HEIGHT;
+
+    if (cellSize * gridCols > WINDOW_WIDTH) {
+        cellSize = WINDOW_WIDTH / gridCols;
+    }
+
+    if (cellSize * gridRows > WINDOW_HEIGHT - 200) {
+        cellSize = (WINDOW_HEIGHT - 200) / gridRows;
+    }
+}
+
 int main()
 {
     bool isSpacePressed = false;
@@ -17,15 +29,12 @@ int main()
     int modifiedFps = TARGET_FPS;
     int row, col;
 
-    int cellSize = WINDOW_WIDTH + WINDOW_HEIGHT;
+    int newGridCols = GRID_COLUMN_COUNT;
+    int newGridRows = GRID_ROW_COUNT;
 
-    if (cellSize * GRID_COLUMN_COUNT > WINDOW_WIDTH) {
-        cellSize = WINDOW_WIDTH / GRID_COLUMN_COUNT;
-    }
+    int cellSize = 0;
 
-    if (cellSize * GRID_ROW_COUNT > WINDOW_HEIGHT - 200) {
-        cellSize = (WINDOW_HEIGHT - 200) / GRID_ROW_COUNT;
-    }
+    piss(cellSize, newGridCols, newGridRows);
 
     Simulation simulation(GRID_COLUMN_COUNT, GRID_ROW_COUNT, cellSize);
 
@@ -80,8 +89,26 @@ int main()
             simulation.CreateRandomState();
         }
 
+        if (GuiButton(Rectangle{ 24, 1050, 150, 100}, "INCREASE")) {
+            newGridCols += 10;
+            newGridRows += 5;
+
+            piss(cellSize, newGridCols, newGridRows);
+            simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
+        };
+
+        if (GuiButton(Rectangle{ 180, 1050, 150, 100}, "DECREASE")) {
+            newGridCols -= 10;
+            newGridRows -= 5;
+
+            piss(cellSize, newGridCols, newGridRows);
+            simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
+        };
+
         /// Updating State
         simulation.Update();
+
+
 
         // Drawing
         BeginDrawing();

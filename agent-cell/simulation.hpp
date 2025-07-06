@@ -18,6 +18,7 @@ public:
     void CreateRandomState();
     void ToggleCell(int row, int column);
     void CalculateMouseOffset(int& row, int& col);
+    void UpdateGridSize(int newWidth, int newHeight, int newCellSize);
 
 private:
     Grid grid;

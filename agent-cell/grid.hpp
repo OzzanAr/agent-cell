@@ -22,6 +22,7 @@ public:
     int GetOffsetLeft() { return offsetLeft; }
     int GetOffsetTop() { return offsetTop; }
     int GetCellSize() { return cellSize; }
+    void UpdateGridDimensons(int newWidth, int newHeight, int newCellSize);
 
 private:
     int rows;

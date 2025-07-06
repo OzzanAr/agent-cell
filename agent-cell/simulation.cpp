@@ -107,3 +107,9 @@ void Simulation::CalculateMouseOffset(int& row, int& col)
     col = (mousePos.x - grid.GetOffsetLeft()) / grid.GetCellSize();
 	row = (mousePos.y - grid.GetOffsetTop()) / grid.GetCellSize();
 }
+
+void Simulation::UpdateGridSize(int newWidth, int newHeight, int newCellSize)
+{
+    grid.UpdateGridDimensons(newWidth, newHeight, newCellSize);
+    tempGrid.UpdateGridDimensons(newWidth, newHeight, newCellSize);
+}
