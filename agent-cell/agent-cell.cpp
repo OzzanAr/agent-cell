@@ -17,9 +17,17 @@ int main()
     int modifiedFps = TARGET_FPS;
     int row, col;
 
-    int cellSize =  WINDOW_WIDTH / GRID_ROW_COUNT;
+    int cellSize = WINDOW_WIDTH + WINDOW_HEIGHT;
 
-    Simulation simulation(GRID_ROW_COUNT, GRID_COLUMN_COUNT, cellSize);
+    if (cellSize * GRID_COLUMN_COUNT > WINDOW_WIDTH) {
+        cellSize = WINDOW_WIDTH / GRID_COLUMN_COUNT;
+    }
+
+    if (cellSize * GRID_ROW_COUNT > WINDOW_HEIGHT - 200) {
+        cellSize = (WINDOW_HEIGHT - 200) / GRID_ROW_COUNT;
+    }
+
+    Simulation simulation(GRID_COLUMN_COUNT, GRID_ROW_COUNT, cellSize);
 
     while (!WindowShouldClose())
     {
