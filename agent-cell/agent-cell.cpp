@@ -29,6 +29,11 @@ int main()
             simulation.CalculateMouseOffset(row, col);
             simulation.ToggleCell(row, col);
         }
+        else if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
+            simulation.CalculateMouseOffset(row, col);
+            simulation.ToggleCell(row, col);
+        }
+
 
         if (IsKeyPressed(KEY_SPACE))
         {
