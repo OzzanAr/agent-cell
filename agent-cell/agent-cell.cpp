@@ -8,15 +8,11 @@
 #include "simulation.hpp"
 #include <algorithm>
 
-void piss(int &cellSize, int gridCols, int gridRows) {
+void CalculateCellSize(int &cellSize, int gridCols, int gridRows) {
     cellSize = WINDOW_WIDTH + WINDOW_HEIGHT;
 
     if (cellSize * gridCols > WINDOW_WIDTH) {
         cellSize = WINDOW_WIDTH / gridCols;
-    }
-
-    if (cellSize * gridRows > WINDOW_HEIGHT - 200) {
-        cellSize = (WINDOW_HEIGHT - 200) / gridRows;
     }
 }
 
@@ -34,7 +30,7 @@ int main()
 
     int cellSize = 0;
 
-    piss(cellSize, newGridCols, newGridRows);
+    CalculateCellSize(cellSize, newGridCols, newGridRows);
 
     Simulation simulation(GRID_COLUMN_COUNT, GRID_ROW_COUNT, cellSize);
 
@@ -93,7 +89,7 @@ int main()
             newGridCols += 10;
             newGridRows += 5;
 
-            piss(cellSize, newGridCols, newGridRows);
+            CalculateCellSize(cellSize, newGridCols, newGridRows);
             simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
         };
 
@@ -101,14 +97,12 @@ int main()
             newGridCols -= 10;
             newGridRows -= 5;
 
-            piss(cellSize, newGridCols, newGridRows);
+            CalculateCellSize(cellSize, newGridCols, newGridRows);
             simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
         };
 
         /// Updating State
         simulation.Update();
-
-
 
         // Drawing
         BeginDrawing();

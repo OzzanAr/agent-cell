@@ -80,4 +80,11 @@ void Grid::UpdateGridDimensons(int newWidth, int newHeight, int newCellSize)
     this->cols = newWidth;
     this->cellSize = newCellSize;
     this->cells = std::vector<std::vector<int>>(newHeight, std::vector<int>(newWidth, 0));
+    CalculateOffsetValues();
+}
+
+void Grid::CalculateOffsetValues()
+{
+	this->offsetLeft = (WINDOW_WIDTH - cols * cellSize) / 2;
+	this->offsetTop = (WINDOW_HEIGHT- rows * cellSize) / 2;
 }

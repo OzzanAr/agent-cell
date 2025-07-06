@@ -7,8 +7,7 @@ class Grid
 public:
     Grid(int width, int height, int cellSize)
         : rows(height), cols(width), cellSize(cellSize), cells(rows, std::vector<int>(cols, 0)) {
-        offsetLeft = (WINDOW_WIDTH - cols * cellSize) / 2;
-        offsetTop = (WINDOW_HEIGHT- rows * cellSize) / 2;
+        CalculateOffsetValues();
     };
     void Draw();
     void SetCellValue(int row, int column, int value);
@@ -23,6 +22,7 @@ public:
     int GetOffsetTop() { return offsetTop; }
     int GetCellSize() { return cellSize; }
     void UpdateGridDimensons(int newWidth, int newHeight, int newCellSize);
+    void CalculateOffsetValues();
 
 private:
     int rows;
