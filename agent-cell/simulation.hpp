@@ -19,9 +19,12 @@ public:
     void ToggleCell(int row, int column);
     void CalculateMouseOffset(int& row, int& col);
     void UpdateGridSize(int newWidth, int newHeight, int newCellSize);
+    int GetCurrentGeneration() { return currentGeneration; }
+    void ResetGenerationCount() { currentGeneration = 0; }
 
 private:
     Grid grid;
     Grid tempGrid;
     bool run;
+    int currentGeneration = 0;
 };

@@ -45,6 +45,7 @@ void Simulation::Update()
             }
         }
         grid = tempGrid;
+        currentGeneration++;
     }
 }
 
@@ -112,4 +113,5 @@ void Simulation::UpdateGridSize(int newWidth, int newHeight, int newCellSize)
 {
     grid.UpdateGridDimensons(newWidth, newHeight, newCellSize);
     tempGrid.UpdateGridDimensons(newWidth, newHeight, newCellSize);
+    ResetGenerationCount();
 }

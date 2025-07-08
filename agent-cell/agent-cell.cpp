@@ -7,6 +7,7 @@
 #include "globals.hpp"
 #include "simulation.hpp"
 #include <algorithm>
+#include <string>
 
 void CalculateCellSize(int &cellSize, int gridCols, int gridRows) {
     cellSize = WINDOW_WIDTH + WINDOW_HEIGHT;
@@ -29,6 +30,11 @@ int main()
     int newGridRows = GRID_ROW_COUNT;
 
     int cellSize = 0;
+    std::string genStr;
+
+    GuiSetStyle(DEFAULT, TEXT_SIZE, 14);
+    GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, 0x008000);
+    
 
     CalculateCellSize(cellSize, newGridCols, newGridRows);
 
@@ -79,10 +85,12 @@ int main()
         else if (IsKeyPressed(KEY_C))
         {
             simulation.ClearGrid();
+            simulation.ResetGenerationCount();
         }
         else if (IsKeyPressed(KEY_R))
         {
             simulation.CreateRandomState();
+            simulation.ResetGenerationCount();
         }
 
         if (GuiButton(Rectangle{ 24, 1050, 150, 100}, "INCREASE")) {
@@ -101,12 +109,15 @@ int main()
             simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
         };
 
+        genStr = "CURRENT GENERATION:" + std::to_string(simulation.GetCurrentGeneration());
+        GuiLabel(Rectangle{ 1000, 1050, 200, 120}, genStr.c_str());
+
         /// Updating State
         simulation.Update();
 
         // Drawing
         BeginDrawing();
-        ClearBackground(GRAY);
+        ClearBackground(BLACK);
         simulation.Draw();
         EndDrawing();
     }
