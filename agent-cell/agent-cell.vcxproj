@@ -132,12 +132,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="agent-cell.cpp" />
+    <ClCompile Include="bunny.cpp" />
     <ClCompile Include="grid.cpp" />
+    <ClCompile Include="gridElement.cpp" />
     <ClCompile Include="simulation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bunny.hpp" />
     <ClInclude Include="globals.hpp" />
     <ClInclude Include="grid.hpp" />
+    <ClInclude Include="gridElement.hpp" />
     <ClInclude Include="simulation.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
