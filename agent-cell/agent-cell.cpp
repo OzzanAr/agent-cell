@@ -32,7 +32,7 @@ int main()
     int cellSize = 0;
     std::string genStr;
 
-    GuiSetStyle(DEFAULT, TEXT_SIZE, 14);
+    GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, 0x008000);
     
 
@@ -110,7 +110,7 @@ int main()
         };
 
         genStr = "CURRENT GENERATION:" + std::to_string(simulation.GetCurrentGeneration());
-        GuiLabel(Rectangle{ 1000, 1050, 200, 120}, genStr.c_str());
+        GuiLabel(Rectangle{ 1000, 1050, 500, 120}, genStr.c_str());
 
         /// Updating State
         simulation.Update();
