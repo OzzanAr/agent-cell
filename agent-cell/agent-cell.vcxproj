@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bunny.hpp" />
+    <ClInclude Include="emptyCell.hpp" />
     <ClInclude Include="globals.hpp" />
     <ClInclude Include="grid.hpp" />
     <ClInclude Include="gridElement.hpp" />

@@ -44,7 +44,7 @@ void Simulation::Update()
                 }
             }
         }
-        grid = tempGrid;
+        grid.DeepCopyGrid(tempGrid);
         currentGeneration++;
     }
 }

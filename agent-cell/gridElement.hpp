@@ -1,10 +1,13 @@
 #pragma once
 #include "raylib.h"
 #include "globals.hpp"
+#include <memory>
 
 class GridElement {
 public:
-	GridElement() : color(CUSTOM_GREY), value(0) {}
+	virtual std::unique_ptr<GridElement> clone() const = 0;
+
+	virtual ~GridElement() = default;
 
 	Color GetColor() const { return color; }
 	int GetValue() const { return value; }

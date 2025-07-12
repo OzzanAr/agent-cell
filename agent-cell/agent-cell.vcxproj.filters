@@ -41,5 +41,8 @@
     <ClInclude Include="bunny.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="emptyCell.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
