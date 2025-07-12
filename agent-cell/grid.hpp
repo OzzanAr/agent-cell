@@ -1,12 +1,14 @@
 #pragma once
 #include <vector>
 #include "globals.hpp"
+#include "gridElement.hpp"
 
 class Grid
 {
 public:
     Grid(int width, int height, int cellSize)
-        : rows(height), cols(width), cellSize(cellSize), cells(rows, std::vector<int>(cols, 0)) {
+        : rows(height), cols(width), cellSize(cellSize) {
+        cells.resize(rows, std::vector<GridElement>(cols));
         CalculateOffsetValues();
     };
     void Draw();
@@ -17,7 +19,7 @@ public:
     int GetColumns() { return cols; }
     void FillRandomly();
     void Clear();
-    void ToggleCellValue(int row, int column);
+    // void ToggleCellValue(int row, int column);
     int GetOffsetLeft() { return offsetLeft; }
     int GetOffsetTop() { return offsetTop; }
     int GetCellSize() { return cellSize; }
@@ -30,5 +32,5 @@ private:
     int cellSize;
     int offsetLeft;
     int offsetTop;
-    std::vector<std::vector<int>> cells;
+    std::vector<std::vector<GridElement>> cells;
 };

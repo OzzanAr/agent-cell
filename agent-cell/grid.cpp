@@ -8,7 +8,7 @@ void Grid::Draw()
     {
         for (int col = 0; col < cols; col++)
         {
-            Color cellColor = cells[row][col] == 1 ? CUSTOM_GREEN : CUSTOM_GREY;
+            Color cellColor = cells[row][col].GetValue() == 1 ? CUSTOM_GREEN : CUSTOM_GREY;
 
             // Minus one on the width and height of the CellSize when drawing the rectangles to display grid lines.
             DrawRectangle(col * cellSize + offsetLeft, row * cellSize + offsetTop, cellSize - 1, cellSize - 1, cellColor);
@@ -20,7 +20,7 @@ void Grid::SetCellValue(int row, int column, int value)
 {
     if (IsWithinBounds(row, column))
     {
-        cells[row][column] = value;
+        cells[row][column].SetValue(value);
     }
 }
 
@@ -28,7 +28,7 @@ int Grid::GetCellValue(int row, int column)
 {
     if (IsWithinBounds(row, column))
     {
-        return cells[row][column];
+        return cells[row][column].GetValue();
     }
     return 0;
 }
@@ -50,7 +50,7 @@ void Grid::FillRandomly()
         for (int col = 0; col < cols; col++)
         {
             int randValue = GetRandomValue(0, 4);
-            cells[row][col] = (randValue == 4) ? 1 : 0;
+            cells[row][col].SetValue((randValue == 4) ? 1 : 0);
         }
     }
 }
@@ -61,17 +61,23 @@ void Grid::Clear()
     {
         for (int col = 0; col < cols; col++)
         {
-            cells[row][col] = 0;
+            cells[row][col].SetValue(0);
         }
     }
 }
 
-void Grid::ToggleCellValue(int row, int column)
+//void Grid::ToggleCellValue(int row, int column)
+//{
+//    if (IsWithinBounds(row, column))
+//    {
+//        cells[row][column] = !cells[row][column];
+//    }
+//}
+
+void Grid::CalculateOffsetValues()
 {
-    if (IsWithinBounds(row, column))
-    {
-        cells[row][column] = !cells[row][column];
-    }
+	this->offsetLeft = (WINDOW_WIDTH - cols * cellSize) / 2;
+	this->offsetTop = (WINDOW_HEIGHT- rows * cellSize) / 2;
 }
 
 void Grid::UpdateGridDimensons(int newWidth, int newHeight, int newCellSize)
@@ -79,12 +85,10 @@ void Grid::UpdateGridDimensons(int newWidth, int newHeight, int newCellSize)
     this->rows = newHeight;
     this->cols = newWidth;
     this->cellSize = newCellSize;
-    this->cells = std::vector<std::vector<int>>(newHeight, std::vector<int>(newWidth, 0));
+    this->cells.resize(newHeight);
+    for (auto& row : cells) {
+        row.resize(newWidth); // properly sizes every row
+    }
     CalculateOffsetValues();
 }
 
-void Grid::CalculateOffsetValues()
-{
-	this->offsetLeft = (WINDOW_WIDTH - cols * cellSize) / 2;
-	this->offsetTop = (WINDOW_HEIGHT- rows * cellSize) / 2;
-}

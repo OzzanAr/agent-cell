@@ -16,7 +16,7 @@ public:
     void Stop() { run = false; }
     void ClearGrid();
     void CreateRandomState();
-    void ToggleCell(int row, int column);
+    // void ToggleCell(int row, int column);
     void CalculateMouseOffset(int& row, int& col);
     void UpdateGridSize(int newWidth, int newHeight, int newCellSize);
     int GetCurrentGeneration() { return currentGeneration; }

@@ -49,8 +49,7 @@ void Simulation::Update()
     }
 }
 
-void Simulation::SetCellValue(int row, int column, int value)
-{
+void Simulation::SetCellValue(int row, int column, int value) {
     grid.SetCellValue(row, column, value);
 }
 
@@ -94,13 +93,13 @@ void Simulation::CreateRandomState()
     }
 }
 
-void Simulation::ToggleCell(int row, int column)
-{
-    if (!IsRunning())
-    {
-        grid.ToggleCellValue(row, column);
-    }
-}
+//void Simulation::ToggleCell(int row, int column)
+//{
+//    if (!IsRunning())
+//    {
+//        grid.ToggleCellValue(row, column);
+//    }
+//}
 
 void Simulation::CalculateMouseOffset(int& row, int& col)
 {

@@ -1,13 +1,16 @@
 #pragma once
 #include "raylib.h"
+#include "globals.hpp"
 
 class GridElement {
 public:
-	GridElement();
+	GridElement() : color(CUSTOM_GREY), value(0) {}
+
 	Color GetColor() { return color; }
+	void SetValue(int v) { value = v; }
 	int GetValue() { return value; }
 
 protected:
-	Color color = GRAY;
-	int value = 0;
+	Color color;
+	int value;
 };

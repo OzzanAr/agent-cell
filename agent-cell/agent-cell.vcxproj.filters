@@ -24,9 +24,6 @@
     <ClCompile Include="simulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gridElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bunny.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
