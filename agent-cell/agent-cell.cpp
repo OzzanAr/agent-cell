@@ -34,7 +34,6 @@ int main()
 
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, 0x008000);
-    
 
     CalculateCellSize(cellSize, newGridCols, newGridRows);
 
@@ -52,7 +51,6 @@ int main()
             simulation.CalculateMouseOffset(row, col);
             // simulation.ToggleCell(row, col);
         }
-
 
         if (IsKeyPressed(KEY_SPACE))
         {

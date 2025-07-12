@@ -2,5 +2,8 @@
 #include "gridElement.hpp"
 
 class Bunny : public GridElement {
-	Bunny();
+	Bunny() {
+		value = 1;
+		color = PINK;
+	}
 };

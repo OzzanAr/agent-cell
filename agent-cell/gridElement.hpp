@@ -6,9 +6,10 @@ class GridElement {
 public:
 	GridElement() : color(CUSTOM_GREY), value(0) {}
 
-	Color GetColor() { return color; }
+	Color GetColor() const { return color; }
+	int GetValue() const { return value; }
+
 	void SetValue(int v) { value = v; }
-	int GetValue() { return value; }
 
 protected:
 	Color color;
