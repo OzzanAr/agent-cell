@@ -138,6 +138,8 @@
   <ItemGroup>
     <ClInclude Include="bunny.hpp" />
     <ClInclude Include="emptyCell.hpp" />
+    <ClInclude Include="food.hpp" />
+    <ClInclude Include="fox.hpp" />
     <ClInclude Include="globals.hpp" />
     <ClInclude Include="grid.hpp" />
     <ClInclude Include="gridElement.hpp" />

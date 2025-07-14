@@ -44,5 +44,11 @@
     <ClInclude Include="emptyCell.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="fox.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="food.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
