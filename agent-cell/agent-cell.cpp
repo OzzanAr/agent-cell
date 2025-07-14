@@ -45,10 +45,11 @@ int main()
         if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
         {
             simulation.CalculateMouseOffset(row, col);
-            // simulation.ToggleCell(row, col);
+            simulation.ToggleCell(row, col, CellType::BUNNY);
         }
         else if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
             simulation.CalculateMouseOffset(row, col);
+            simulation.ToggleCell(row, col, CellType::EMPTY);
             // simulation.ToggleCell(row, col);
         }
 

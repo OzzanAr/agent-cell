@@ -1,6 +1,7 @@
 #include "grid.hpp"
 #include "globals.hpp"
 #include <raylib.h>
+#include <iostream>
 
 void Grid::Draw()
 {
@@ -8,7 +9,7 @@ void Grid::Draw()
     {
         for (int col = 0; col < cols; col++)
         {
-            Color cellColor = cells[row][col]->GetValue() == 1 ? CUSTOM_GREEN : CUSTOM_GREY;
+            Color cellColor = cells[row][col]->GetColor();
 
             // Minus one on the width and height of the CellSize when drawing the rectangles to display grid lines.
             DrawRectangle(col * cellSize + offsetLeft, row * cellSize + offsetTop, cellSize - 1, cellSize - 1, cellColor);
@@ -66,13 +67,26 @@ void Grid::Clear()
     }
 }
 
-//void Grid::ToggleCellValue(int row, int column)
-//{
-//    if (IsWithinBounds(row, column))
-//    {
-//        cells[row][column] = Bunny();
-//    }
-//}
+void Grid::ToggleCellValue(int row, int column, CellType cellType)
+{
+    if (IsWithinBounds(row, column))
+    {
+        switch (cellType) {
+            case EMPTY:
+				cells[row][column] = std::make_unique<EmptyCell>();
+                break;
+            case BUNNY:
+				cells[row][column] = std::make_unique<Bunny>();
+                break;
+            case FOX:
+				cells[row][column] = std::make_unique<Fox>();
+                break;
+            case FOOD:
+				cells[row][column] = std::make_unique<Food>();
+                break;
+        }
+    }
+}
 
 void Grid::CalculateOffsetValues()
 {

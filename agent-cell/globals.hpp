@@ -14,3 +14,10 @@ constexpr int TARGET_FPS = 12;
 
 constexpr Color CUSTOM_GREY = { 55, 55, 55, 255 };
 constexpr Color CUSTOM_GREEN = { 0, 255, 0, 255 };
+
+enum CellType {
+	EMPTY,
+	BUNNY,
+	FOX,
+	FOOD
+};

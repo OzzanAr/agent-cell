@@ -5,6 +5,8 @@
 #include "gridElement.hpp"
 #include "emptyCell.hpp"
 #include "bunny.hpp"
+#include "fox.hpp"
+#include "food.hpp"
 
 class Grid
 {
@@ -27,7 +29,7 @@ public:
     int GetColumns() { return cols; }
     void FillRandomly();
     void Clear();
-    // void ToggleCellValue(int row, int column);
+    void ToggleCellValue(int row, int column, CellType cellType);
     int GetOffsetLeft() { return offsetLeft; }
     int GetOffsetTop() { return offsetTop; }
     int GetCellSize() { return cellSize; }

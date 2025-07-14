@@ -93,13 +93,13 @@ void Simulation::CreateRandomState()
     }
 }
 
-//void Simulation::ToggleCell(int row, int column)
-//{
-//    if (!IsRunning())
-//    {
-//        grid.ToggleCellValue(row, column);
-//    }
-//}
+void Simulation::ToggleCell(int row, int column, CellType cellType)
+{
+    if (!IsRunning())
+    {
+        grid.ToggleCellValue(row, column, cellType);
+    }
+}
 
 void Simulation::CalculateMouseOffset(int& row, int& col)
 {
