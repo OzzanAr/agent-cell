@@ -32,6 +32,8 @@ int main()
     int cellSize = 0;
     std::string genStr;
 
+    CellType inputType = EMPTY;
+
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, 0x008000);
 
@@ -45,12 +47,11 @@ int main()
         if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
         {
             simulation.CalculateMouseOffset(row, col);
-            simulation.ToggleCell(row, col, CellType::BUNNY);
+            simulation.ToggleCell(row, col, inputType);
         }
         else if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
             simulation.CalculateMouseOffset(row, col);
             simulation.ToggleCell(row, col, CellType::EMPTY);
-            // simulation.ToggleCell(row, col);
         }
 
         if (IsKeyPressed(KEY_SPACE))
@@ -106,6 +107,18 @@ int main()
 
             CalculateCellSize(cellSize, newGridCols, newGridRows);
             simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
+        };
+
+        if (GuiButton(Rectangle{ 336, 1050, 150, 100}, "BUNNY")) {
+            inputType = BUNNY;
+        };
+
+        if (GuiButton(Rectangle{ 492, 1050, 150, 100}, "FOX")) {
+            inputType = FOX;
+        };
+
+        if (GuiButton(Rectangle{ 648, 1050, 150, 100}, "FOOD")) {
+            inputType = FOOD;
         };
 
         genStr = "CURRENT GENERATION:" + std::to_string(simulation.GetCurrentGeneration());
