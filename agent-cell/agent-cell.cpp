@@ -123,6 +123,7 @@ int main()
 
         genStr = "CURRENT GENERATION:" + std::to_string(simulation.GetCurrentGeneration());
         GuiLabel(Rectangle{ 1000, 1050, 500, 120}, genStr.c_str());
+        GuiLabel(Rectangle{ 50, 50, 500, 120 }, "AGENT CELL");
 
         /// Updating State
         simulation.Update();
