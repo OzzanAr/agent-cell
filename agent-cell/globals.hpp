@@ -1,5 +1,7 @@
 #pragma once
 #include <raylib.h>
+#include <string>
+#include <map>
 
 constexpr int WINDOW_WIDTH = 1500;
 constexpr int WINDOW_HEIGHT = 1200;
@@ -20,4 +22,11 @@ enum CellType {
 	BUNNY,
 	FOX,
 	FOOD
+};
+
+static std::map<CellType, std::string> MappedCellType = {
+	{EMPTY, "Empty"},
+	{BUNNY, "Bunny"},
+	{FOX, "Fox"},
+	{FOOD, "Food"},
 };

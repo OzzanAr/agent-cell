@@ -17,6 +17,10 @@ void CalculateCellSize(int &cellSize, int gridCols, int gridRows) {
     }
 }
 
+static std::string EnumToString(CellType type) {
+    return MappedCellType[type];
+}
+
 int main()
 {
     bool isSpacePressed = false;
@@ -33,6 +37,8 @@ int main()
     std::string genStr;
 
     CellType inputType = EMPTY;
+
+    std::string inputTypeStr = "SELECTED: " + std::to_string(inputType);
 
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, 0x008000);
@@ -109,21 +115,27 @@ int main()
             simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
         };
 
-        if (GuiButton(Rectangle{ 336, 1050, 150, 100}, "BUNNY")) {
+        if (GuiButton(Rectangle{ 336, 1050, 150, 100}, EnumToString(BUNNY).c_str())) {
             inputType = BUNNY;
         };
 
-        if (GuiButton(Rectangle{ 492, 1050, 150, 100}, "FOX")) {
+        if (GuiButton(Rectangle{ 492, 1050, 150, 100}, EnumToString(FOX).c_str())) {
             inputType = FOX;
         };
 
-        if (GuiButton(Rectangle{ 648, 1050, 150, 100}, "FOOD")) {
+        if (GuiButton(Rectangle{ 648, 1050, 150, 100}, EnumToString(FOOD).c_str())) {
             inputType = FOOD;
         };
 
+        inputTypeStr = "SELECTED: " + EnumToString(inputType);
+
+        // Labels
         genStr = "CURRENT GENERATION:" + std::to_string(simulation.GetCurrentGeneration());
         GuiLabel(Rectangle{ 1000, 1050, 500, 120}, genStr.c_str());
+
         GuiLabel(Rectangle{ 50, 50, 500, 120 }, "AGENT CELL");
+
+        GuiLabel(Rectangle{ 492, 950, 500, 120 }, inputTypeStr.c_str());
 
         /// Updating State
         simulation.Update();
