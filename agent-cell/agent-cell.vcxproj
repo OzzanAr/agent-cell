@@ -135,6 +135,7 @@
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="gridElement.cpp" />
     <ClCompile Include="simulation.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bunny.hpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="grid.hpp" />
     <ClInclude Include="gridElement.hpp" />
     <ClInclude Include="simulation.hpp" />
+    <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,4 +11,8 @@ public:
 	std::unique_ptr<GridElement> clone() const override {
 		return std::make_unique<EmptyCell>(*this);
 	}
+
+	CellType GetType() const override {
+		return CellType::EMPTYCELL;
+	}
 };

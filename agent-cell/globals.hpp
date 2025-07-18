@@ -19,14 +19,14 @@ constexpr Color CUSTOM_GREY = { 55, 55, 55, 255 };
 constexpr Color CUSTOM_GREEN = { 0, 255, 0, 255 };
 
 enum CellType {
-	EMPTY,
+	EMPTYCELL,
 	BUNNY,
 	FOX,
 	FOOD
 };
 
 static std::map<CellType, std::string> MappedCellType = {
-	{EMPTY, "Empty"},
+	{EMPTYCELL, "Empty"},
 	{BUNNY, "Bunny"},
 	{FOX, "Fox"},
 	{FOOD, "Food"},

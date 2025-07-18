@@ -72,7 +72,7 @@ void Grid::ToggleCellValue(int row, int column, CellType cellType)
     if (IsWithinBounds(row, column))
     {
         switch (cellType) {
-            case EMPTY:
+            case EMPTYCELL:
 				cells[row][column] = std::make_unique<EmptyCell>();
                 break;
             case BUNNY:
@@ -92,6 +92,13 @@ void Grid::CalculateOffsetValues()
 {
 	this->offsetLeft = (WINDOW_WIDTH - cols * cellSize) / 2;
 	this->offsetTop = (WINDOW_HEIGHT- rows * cellSize) / 2;
+}
+
+CellType Grid::GetCellTypeAtCoordinate(int row, int column)
+{
+    if (IsWithinBounds(row, column)) {
+        return cells[row][column]->GetType();
+    }
 }
 
 void Grid::SetupGridCells(int cellRows, int cellCols)

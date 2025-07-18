@@ -6,9 +6,10 @@
 
 class GridElement {
 public:
-	virtual std::unique_ptr<GridElement> clone() const = 0;
-
 	virtual ~GridElement() = default;
+
+	virtual std::unique_ptr<GridElement> clone() const = 0;
+	virtual CellType GetType() const = 0;
 
 	Color GetColor() const { return color; }
 	int GetValue() const { return value; }

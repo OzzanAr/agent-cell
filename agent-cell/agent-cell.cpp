@@ -4,10 +4,11 @@
 #include "raygui.h"
 
 #include <raymath.h>
-#include "globals.hpp"
-#include "simulation.hpp"
 #include <algorithm>
 #include <string>
+#include "globals.hpp"
+#include "simulation.hpp"
+#include "utils.hpp"
 
 void CalculateCellSize(int &cellSize, int gridCols, int gridRows) {
     cellSize = WINDOW_WIDTH + WINDOW_HEIGHT;
@@ -15,10 +16,6 @@ void CalculateCellSize(int &cellSize, int gridCols, int gridRows) {
     if (cellSize * gridCols > WINDOW_WIDTH) {
         cellSize = WINDOW_WIDTH / gridCols;
     }
-}
-
-static std::string EnumToString(CellType type) {
-    return MappedCellType[type];
 }
 
 int main()
@@ -38,7 +35,7 @@ int main()
     int cellSize = 0;
     std::string genStr;
 
-    CellType inputType = EMPTY;
+    CellType inputType = EMPTYCELL;
 
     std::string inputTypeStr = "SELECTED: " + std::to_string(inputType);
 
@@ -63,7 +60,7 @@ int main()
         }
         else if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
             simulation.CalculateMouseOffset(row, col);
-            simulation.ToggleCell(row, col, CellType::EMPTY);
+            simulation.ToggleCell(row, col, CellType::EMPTYCELL);
         }
 
         if (IsKeyPressed(KEY_SPACE))
@@ -132,19 +129,19 @@ int main()
 		//float spacing = screenWidth * 0.01f;
 		//float btnXStart = (screenWidth - (3 * btnWidth + 2 * spacing)) / 2.0f;
 
-        if (GuiButton(Rectangle{ 336, 1050, 150, 100 }, EnumToString(BUNNY).c_str())) {
+        if (GuiButton(Rectangle{ 336, 1050, 150, 100 }, utils::EnumToString(BUNNY).c_str())) {
             inputType = BUNNY;
         };
 
-        if (GuiButton(Rectangle{ 492, 1050, 150, 100 }, EnumToString(FOX).c_str())) {
+        if (GuiButton(Rectangle{ 492, 1050, 150, 100 }, utils::EnumToString(FOX).c_str())) {
             inputType = FOX;
         };
 
-        if (GuiButton(Rectangle{ 648, 1050, 150, 100 }, EnumToString(FOOD).c_str())) {
+        if (GuiButton(Rectangle{ 648, 1050, 150, 100 }, utils::EnumToString(FOOD).c_str())) {
             inputType = FOOD;
         };
 
-        inputTypeStr = "SELECTED: " + EnumToString(inputType);
+        inputTypeStr = "SELECTED: " + utils::EnumToString(inputType);
 
         // Labels
         genStr = "CURRENT GENERATION:" + std::to_string(simulation.GetCurrentGeneration());
