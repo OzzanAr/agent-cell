@@ -6,6 +6,7 @@
 constexpr int WINDOW_WIDTH = 1500;
 constexpr int WINDOW_HEIGHT = 1200;
 
+// Currently unused - Delete in the future
 constexpr int GRID_WIDTH = 1000;
 constexpr int GRID_HEIGHT = 500;
 

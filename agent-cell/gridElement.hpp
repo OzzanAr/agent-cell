@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "globals.hpp"
 #include <memory>
+#include <vector>
 
 class GridElement {
 public:
@@ -13,6 +14,8 @@ public:
 	int GetValue() const { return value; }
 
 	void SetValue(int v) { value = v; }
+
+	std::pair<int, int> GetCoordinates();
 
 protected:
 	Color color;

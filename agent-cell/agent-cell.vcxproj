@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="agent-cell.cpp" />
     <ClCompile Include="grid.cpp" />
+    <ClCompile Include="gridElement.cpp" />
     <ClCompile Include="simulation.cpp" />
   </ItemGroup>
   <ItemGroup>

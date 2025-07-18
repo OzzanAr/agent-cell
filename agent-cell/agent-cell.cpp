@@ -25,6 +25,8 @@ int main()
 {
     bool isSpacePressed = false;
 
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Agent Cell");
     SetTargetFPS(TARGET_FPS);
     int modifiedFps = TARGET_FPS;
@@ -46,6 +48,10 @@ int main()
     CalculateCellSize(cellSize, newGridCols, newGridRows);
 
     Simulation simulation(GRID_COLUMN_COUNT, GRID_ROW_COUNT, cellSize);
+
+    // TO-DO: Implement dynamic sizing
+	//int screenWidth = GetScreenWidth();
+	//int screenHeight = GetScreenHeight();
 
     while (!WindowShouldClose())
     {
@@ -115,15 +121,26 @@ int main()
             simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
         };
 
-        if (GuiButton(Rectangle{ 336, 1050, 150, 100}, EnumToString(BUNNY).c_str())) {
+        // TO-DO: Needs to be promperly implemented for dynamic sizing
+		//screenWidth = GetScreenWidth();
+		//screenHeight = GetScreenHeight();
+
+		//float btnWidth = screenWidth * 0.1f;
+		//float btnHeight = screenHeight * 0.08f;
+		//float btnY = screenHeight - btnHeight - 20;
+
+		//float spacing = screenWidth * 0.01f;
+		//float btnXStart = (screenWidth - (3 * btnWidth + 2 * spacing)) / 2.0f;
+
+        if (GuiButton(Rectangle{ 336, 1050, 150, 100 }, EnumToString(BUNNY).c_str())) {
             inputType = BUNNY;
         };
 
-        if (GuiButton(Rectangle{ 492, 1050, 150, 100}, EnumToString(FOX).c_str())) {
+        if (GuiButton(Rectangle{ 492, 1050, 150, 100 }, EnumToString(FOX).c_str())) {
             inputType = FOX;
         };
 
-        if (GuiButton(Rectangle{ 648, 1050, 150, 100}, EnumToString(FOOD).c_str())) {
+        if (GuiButton(Rectangle{ 648, 1050, 150, 100 }, EnumToString(FOOD).c_str())) {
             inputType = FOOD;
         };
 

@@ -35,6 +35,7 @@ public:
     int GetCellSize() { return cellSize; }
     void UpdateGridDimensons(int newWidth, int newHeight, int newCellSize);
     void CalculateOffsetValues();
+    GridElement GetObjectAtCoordinate();
 
 
 private:
