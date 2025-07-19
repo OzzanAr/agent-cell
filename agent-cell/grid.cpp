@@ -94,10 +94,17 @@ void Grid::CalculateOffsetValues()
 	this->offsetTop = (WINDOW_HEIGHT- rows * cellSize) / 2;
 }
 
-CellType Grid::GetCellTypeAtCoordinate(int row, int column)
+CellType Grid::GetCellTypeAt(int row, int column)
 {
     if (IsWithinBounds(row, column)) {
         return cells[row][column]->GetType();
+    }
+}
+
+GridElement* Grid::GetAgentAt(int row, int column)
+{
+    if (IsWithinBounds(row, column)) {
+		return cells[row][column].get();
     }
 }
 

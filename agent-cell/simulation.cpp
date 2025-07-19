@@ -3,6 +3,8 @@
 #include <raylib.h>
 #include <vector>
 #include <utility>
+#include <iostream>
+#include "utils.hpp"
 
 void Simulation::Draw()
 {
@@ -11,40 +13,44 @@ void Simulation::Draw()
 
 void Simulation::Update()
 {
+    InitilizeActiveAgents();
+    PrintActiveAgents();
+
     if (IsRunning())
     {
-        for (int row = 0; row < grid.GetRows(); row++)
-        {
-            for (int column = 0; column < grid.GetColumns(); column++)
-            {
-                int liveNeighbors = CountLiveNeighbors(row, column);
-                int cellValue = grid.GetCellValue(row, column);
+        // TO-DO: Reconsider the implementation of interaction
+        //for (int row = 0; row < grid.GetRows(); row++)
+        //{
+        //    for (int column = 0; column < grid.GetColumns(); column++)
+        //    {
+        //        int liveNeighbors = CountLiveNeighbors(row, column);
+        //        int cellValue = grid.GetCellValue(row, column);
 
-                if (cellValue == 1)
-                {
-                    if (liveNeighbors > 3 || liveNeighbors < 2)
-                    {
-                        tempGrid.SetCellValue(row, column, 0);
-                    }
-                    else
-                    {
-                        tempGrid.SetCellValue(row, column, 1);
-                    }
-                }
-                else
-                {
-                    if (liveNeighbors == 3)
-                    {
-                        tempGrid.SetCellValue(row, column, 1);
-                    }
-                    else
-                    {
-                        tempGrid.SetCellValue(row, column, 0);
-                    }
-                }
-            }
-        }
-        grid.DeepCopyGrid(tempGrid);
+        //        if (cellValue == 1)
+        //        {
+        //            if (liveNeighbors > 3 || liveNeighbors < 2)
+        //            {
+        //                tempGrid.SetCellValue(row, column, 0);
+        //            }
+        //            else
+        //            {
+        //                tempGrid.SetCellValue(row, column, 1);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (liveNeighbors == 3)
+        //            {
+        //                tempGrid.SetCellValue(row, column, 1);
+        //            }
+        //            else
+        //            {
+        //                tempGrid.SetCellValue(row, column, 0);
+        //            }
+        //        }
+        //    }
+        //}
+        //grid.DeepCopyGrid(tempGrid);
         currentGeneration++;
     }
 }
@@ -113,4 +119,32 @@ void Simulation::UpdateGridSize(int newWidth, int newHeight, int newCellSize)
     grid.UpdateGridDimensons(newWidth, newHeight, newCellSize);
     tempGrid.UpdateGridDimensons(newWidth, newHeight, newCellSize);
     ResetGenerationCount();
+}
+
+void Simulation::InitilizeActiveAgents()
+{
+    if (IsRunning() && currentGeneration == 0) {
+        for (int row = 0; row < grid.GetRows(); row++)
+        {
+            for (int column = 0; column < grid.GetColumns(); column++)
+            {
+                if (grid.GetCellTypeAt(row, column) != CellType::EMPTYCELL) {
+                    GridElement* element = grid.GetAgentAt(row, column);
+                    if (element) {
+						activeAgents.push_back(element);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void Simulation::PrintActiveAgents() {
+    if (IsRunning()) {
+        std::cout << "=== Active Agents (" << activeAgents.size() << ") ===" << std::endl;
+        for (size_t i = 0; i < activeAgents.size(); ++i) {
+            std::cout << "Agent " << i << ": " << utils::EnumToString(activeAgents[i]->GetType()) << std::endl;
+        }
+        std::cout << "[END] PRINTING DONE" << std::endl;
+    }
 }

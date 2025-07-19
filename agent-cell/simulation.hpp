@@ -21,10 +21,13 @@ public:
     void UpdateGridSize(int newWidth, int newHeight, int newCellSize);
     int GetCurrentGeneration() { return currentGeneration; }
     void ResetGenerationCount() { currentGeneration = 0; }
+    void InitilizeActiveAgents();
+    void PrintActiveAgents();
 
 private:
     Grid grid;
     Grid tempGrid;
     bool run;
     int currentGeneration = 0;
+    std::vector<GridElement*> activeAgents;
 };

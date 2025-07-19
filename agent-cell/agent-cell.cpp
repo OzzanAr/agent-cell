@@ -72,7 +72,7 @@ int main()
     while (!WindowShouldClose())
     {
         UpdateWindowValues(windowWidth, windowHeight);
-        std::cout << "[LOG]: " << windowWidth << "x" << windowHeight << std::endl;
+        // std::cout << "[LOG]: " << windowWidth << "x" << windowHeight << std::endl;
 
         // Event Handling
         if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
