@@ -6,6 +6,7 @@
 #include <raymath.h>
 #include <algorithm>
 #include <string>
+#include <iostream>
 #include "globals.hpp"
 #include "simulation.hpp"
 #include "utils.hpp"
@@ -18,6 +19,20 @@ void CalculateCellSize(int &cellSize, int gridCols, int gridRows) {
     }
 }
 
+void UpdateWindowValues(int& windowWidth, int& windowHeight) {
+    windowWidth = GetScreenWidth();
+    windowHeight = GetScreenHeight();
+}
+
+void CalculateButtonPositions(float &btnWidth, float &btnHeight, float &btnY, float &spacing, float &btnXStart, int windowWidth, int windowHeight) {
+	btnWidth = windowWidth * 0.1f;
+	btnHeight = windowHeight * 0.08f;
+	btnY = windowHeight - btnHeight - 20;
+
+	spacing = windowWidth * 0.01f;
+	btnXStart = (windowWidth - (3 * btnWidth + 2 * spacing)) / 2.0f;
+}
+
 int main()
 {
     bool isSpacePressed = false;
@@ -25,10 +40,18 @@ int main()
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Agent Cell");
+
+    int windowWidth, windowHeight;
+    UpdateWindowValues(windowWidth, windowHeight);
+
+    float btnWidth, btnHeight, btnY, spacing, btnXStart;
+
+    CalculateButtonPositions(btnWidth, btnHeight, btnY, spacing, btnXStart, windowWidth, windowHeight);
+
     SetTargetFPS(TARGET_FPS);
     int modifiedFps = TARGET_FPS;
     int row, col;
-
+    
     int newGridCols = GRID_COLUMN_COUNT;
     int newGridRows = GRID_ROW_COUNT;
 
@@ -46,12 +69,11 @@ int main()
 
     Simulation simulation(GRID_COLUMN_COUNT, GRID_ROW_COUNT, cellSize);
 
-    // TO-DO: Implement dynamic sizing
-	//int screenWidth = GetScreenWidth();
-	//int screenHeight = GetScreenHeight();
-
     while (!WindowShouldClose())
     {
+        UpdateWindowValues(windowWidth, windowHeight);
+        std::cout << "[LOG]: " << windowWidth << "x" << windowHeight << std::endl;
+
         // Event Handling
         if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
         {
@@ -118,28 +140,17 @@ int main()
             simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
         };
 
-        // TO-DO: Needs to be promperly implemented for dynamic sizing
-		//screenWidth = GetScreenWidth();
-		//screenHeight = GetScreenHeight();
+		CalculateButtonPositions(btnWidth, btnHeight, btnY, spacing, btnXStart, windowWidth, windowHeight);
 
-		//float btnWidth = screenWidth * 0.1f;
-		//float btnHeight = screenHeight * 0.08f;
-		//float btnY = screenHeight - btnHeight - 20;
-
-		//float spacing = screenWidth * 0.01f;
-		//float btnXStart = (screenWidth - (3 * btnWidth + 2 * spacing)) / 2.0f;
-
-        if (GuiButton(Rectangle{ 336, 1050, 150, 100 }, utils::EnumToString(BUNNY).c_str())) {
+        if (GuiButton(Rectangle{ btnXStart, btnY, btnWidth, btnHeight }, utils::EnumToString(BUNNY).c_str())) {
             inputType = BUNNY;
-        };
-
-        if (GuiButton(Rectangle{ 492, 1050, 150, 100 }, utils::EnumToString(FOX).c_str())) {
+        }
+        if (GuiButton(Rectangle{ btnXStart + btnWidth + spacing, btnY, btnWidth, btnHeight }, utils::EnumToString(FOX).c_str())) {
             inputType = FOX;
-        };
-
-        if (GuiButton(Rectangle{ 648, 1050, 150, 100 }, utils::EnumToString(FOOD).c_str())) {
+        }
+        if (GuiButton(Rectangle{ btnXStart + 2 * (btnWidth + spacing), btnY, btnWidth, btnHeight }, utils::EnumToString(FOOD).c_str())) {
             inputType = FOOD;
-        };
+        }
 
         inputTypeStr = "SELECTED: " + utils::EnumToString(inputType);
 
@@ -149,7 +160,7 @@ int main()
 
         GuiLabel(Rectangle{ 50, 50, 500, 120 }, "AGENT CELL");
 
-        GuiLabel(Rectangle{ 492, 950, 500, 120 }, inputTypeStr.c_str());
+        GuiLabel(Rectangle{ 50, 70, 500, 120 }, inputTypeStr.c_str());
 
         /// Updating State
         simulation.Update();
