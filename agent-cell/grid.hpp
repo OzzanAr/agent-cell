@@ -36,7 +36,13 @@ public:
     void UpdateGridDimensons(int newWidth, int newHeight, int newCellSize);
     void CalculateOffsetValues();
     CellType GetCellTypeAt(int row, int column);
+    
+    // Getter and Setter for the Grid objects
     GridElement* GetAgentAt(int row, int column);
+    void SetCell(int row, int column, std::unique_ptr<GridElement> element);
+
+
+    std::vector<std::vector<std::unique_ptr<GridElement>>> cells;
 
 
 private:
@@ -45,5 +51,4 @@ private:
     int cellSize;
     int offsetLeft;
     int offsetTop;
-    std::vector<std::vector<std::unique_ptr<GridElement>>> cells;
 };

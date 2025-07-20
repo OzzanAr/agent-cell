@@ -3,10 +3,19 @@
 
 class Fox : public GridElement {
 public:
-	Fox() {
+	Fox(int row, int column) {
 		value = 2;
 		color = RED;
 		isSeen = false;
+		SetCoordinates(row, column);
+	}
+
+	void prepare(Grid&) override {
+		// Skip for now
+	}
+
+	void execute(Grid&) override {
+		// Skip for now
 	}
 
 	std::unique_ptr<GridElement> clone() const override {

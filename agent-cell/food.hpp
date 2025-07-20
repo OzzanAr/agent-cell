@@ -3,9 +3,18 @@
 
 class Food : public GridElement {
 public:
-	Food() {
+	Food(int row, int column) {
 		value = 3;
 		color = GREEN;
+		SetCoordinates(row, column);
+	}
+
+	void prepare(Grid&) override {
+		// Skip for now
+	}
+
+	void execute(Grid&) override {
+		// Skip for now
 	}
 
 	std::unique_ptr<GridElement> clone() const override {

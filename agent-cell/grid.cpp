@@ -76,13 +76,13 @@ void Grid::ToggleCellValue(int row, int column, CellType cellType)
 				cells[row][column] = std::make_unique<EmptyCell>();
                 break;
             case BUNNY:
-				cells[row][column] = std::make_unique<Bunny>();
+				cells[row][column] = std::make_unique<Bunny>(row, column);
                 break;
             case FOX:
-				cells[row][column] = std::make_unique<Fox>();
+				cells[row][column] = std::make_unique<Fox>(row, column);
                 break;
             case FOOD:
-				cells[row][column] = std::make_unique<Food>();
+				cells[row][column] = std::make_unique<Food>(row, column);
                 break;
         }
     }
@@ -106,6 +106,11 @@ GridElement* Grid::GetAgentAt(int row, int column)
     if (IsWithinBounds(row, column)) {
 		return cells[row][column].get();
     }
+}
+
+void Grid::SetCell(int row, int column, std::unique_ptr<GridElement> element)
+{
+    cells[row][column] = std::move(element);
 }
 
 void Grid::SetupGridCells(int cellRows, int cellCols)

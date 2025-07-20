@@ -23,6 +23,8 @@ public:
     void ResetGenerationCount() { currentGeneration = 0; }
     void InitilizeActiveAgents();
     void PrintActiveAgents();
+    
+    void Tick();
 
 private:
     Grid grid;

@@ -18,39 +18,7 @@ void Simulation::Update()
 
     if (IsRunning())
     {
-        // TO-DO: Reconsider the implementation of interaction
-        //for (int row = 0; row < grid.GetRows(); row++)
-        //{
-        //    for (int column = 0; column < grid.GetColumns(); column++)
-        //    {
-        //        int liveNeighbors = CountLiveNeighbors(row, column);
-        //        int cellValue = grid.GetCellValue(row, column);
-
-        //        if (cellValue == 1)
-        //        {
-        //            if (liveNeighbors > 3 || liveNeighbors < 2)
-        //            {
-        //                tempGrid.SetCellValue(row, column, 0);
-        //            }
-        //            else
-        //            {
-        //                tempGrid.SetCellValue(row, column, 1);
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (liveNeighbors == 3)
-        //            {
-        //                tempGrid.SetCellValue(row, column, 1);
-        //            }
-        //            else
-        //            {
-        //                tempGrid.SetCellValue(row, column, 0);
-        //            }
-        //        }
-        //    }
-        //}
-        //grid.DeepCopyGrid(tempGrid);
+        Tick();
         currentGeneration++;
     }
 }
@@ -144,7 +112,19 @@ void Simulation::PrintActiveAgents() {
         std::cout << "=== Active Agents (" << activeAgents.size() << ") ===" << std::endl;
         for (size_t i = 0; i < activeAgents.size(); ++i) {
             std::cout << "Agent " << i << ": " << utils::EnumToString(activeAgents[i]->GetType()) << std::endl;
+            std::cout << "Coordinate: " << activeAgents[i]->GetCoordinates().first << " " << activeAgents[i]->GetCoordinates().second<< std::endl;
         }
         std::cout << "[END] PRINTING DONE" << std::endl;
+    }
+}
+
+void Simulation::Tick()
+{
+    for (auto& agent : activeAgents) {
+        agent->prepare(grid);
+    }
+
+    for (auto& agent : activeAgents) {
+        agent->execute(grid);
     }
 }
