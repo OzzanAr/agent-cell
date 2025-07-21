@@ -40,10 +40,7 @@ public:
     // Getter and Setter for the Grid objects
     GridElement* GetAgentAt(int row, int column);
     void SetCell(int row, int column, std::unique_ptr<GridElement> element);
-
-
-    std::vector<std::vector<std::unique_ptr<GridElement>>> cells;
-
+    void MoveElement(int fromRow, int fromColumn, int toRow, int toColumn);
 
 private:
     int rows;
@@ -51,4 +48,5 @@ private:
     int cellSize;
     int offsetLeft;
     int offsetTop;
+    std::vector<std::vector<std::unique_ptr<GridElement>>> cells;
 };

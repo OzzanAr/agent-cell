@@ -113,6 +113,14 @@ void Grid::SetCell(int row, int column, std::unique_ptr<GridElement> element)
     cells[row][column] = std::move(element);
 }
 
+void Grid::MoveElement(int fromRow, int fromColumn, int toRow, int toColumn)
+{
+    if (cells[toRow][toColumn]->GetType() != CellType::EMPTYCELL) return;
+
+	cells[toRow][toColumn] = std::move(cells[fromRow][fromColumn]);
+	cells[fromRow][fromColumn] = std::make_unique<EmptyCell>();
+}
+
 void Grid::SetupGridCells(int cellRows, int cellCols)
 {
     cells.resize(cellRows);
