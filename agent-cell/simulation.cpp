@@ -120,6 +120,11 @@ void Simulation::PrintActiveAgents() {
 
 void Simulation::Tick()
 {
+    if (activeAgents.empty()) {
+        this->run = false;
+        return;
+    }
+
     for (auto& agent : activeAgents) {
         agent->prepare(grid);
     }
