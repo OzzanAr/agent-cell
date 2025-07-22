@@ -31,3 +31,10 @@ static std::map<CellType, std::string> MappedCellType = {
 	{FOX, "Fox"},
 	{FOOD, "Food"},
 };
+
+enum Direction {
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST	
+};

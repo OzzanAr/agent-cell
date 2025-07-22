@@ -5,10 +5,10 @@ class Grid;
 
 class Bunny : public GridElement {
 public:
-	Bunny(int row, int column) {
+	Bunny(int row, int column) : age(0), energy(5), reproductionCooldown(0),
+		facing(Direction::NORTH), wantsToReproduce(false) {
 		value = 1;
 		color = PINK;
-		isSeen = false;
 		SetCoordinates(row, column);
 	}
 
@@ -27,5 +27,10 @@ public:
 	}
 
 private:
-	bool isSeen;
+	int age;
+	int energy;
+	int reproductionCooldown;
+	Direction facing;
+	bool wantsToReproduce;
+
 };
