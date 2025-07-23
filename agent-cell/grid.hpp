@@ -41,6 +41,7 @@ public:
     GridElement* GetAgentAt(int row, int column);
     void SetCell(int row, int column, std::unique_ptr<GridElement> element);
     void MoveElement(int fromRow, int fromColumn, int toRow, int toColumn);
+    void RemoveElement(int row, int column);
 
 private:
     int rows;

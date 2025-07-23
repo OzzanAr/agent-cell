@@ -21,7 +21,7 @@ public:
     void UpdateGridSize(int newWidth, int newHeight, int newCellSize);
     int GetCurrentGeneration() { return currentGeneration; }
     void ResetGenerationCount() { currentGeneration = 0; }
-    void InitilizeActiveAgents();
+    void RefreshActiveAgents();
     void PrintActiveAgents();
     
     void Tick();

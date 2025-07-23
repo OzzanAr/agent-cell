@@ -121,6 +121,13 @@ void Grid::MoveElement(int fromRow, int fromColumn, int toRow, int toColumn)
 	cells[fromRow][fromColumn] = std::make_unique<EmptyCell>();
 }
 
+void Grid::RemoveElement(int row, int column)
+{
+    if (IsWithinBounds(row, column)) {
+        cells[row][column] = std::make_unique<EmptyCell>();
+    }
+}
+
 void Grid::SetupGridCells(int cellRows, int cellCols)
 {
     cells.resize(cellRows);

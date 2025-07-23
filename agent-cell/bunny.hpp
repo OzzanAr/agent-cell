@@ -12,9 +12,7 @@ public:
 		SetCoordinates(row, column);
 	}
 
-	void prepare(Grid&) override {
-		// Skip for now
-	}
+	void prepare(Grid&) override;
 
 	void execute(Grid& grid) override;
 

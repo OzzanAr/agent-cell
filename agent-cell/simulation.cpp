@@ -13,7 +13,7 @@ void Simulation::Draw()
 
 void Simulation::Update()
 {
-    InitilizeActiveAgents();
+    RefreshActiveAgents();
     PrintActiveAgents();
 
     if (IsRunning())
@@ -89,26 +89,26 @@ void Simulation::UpdateGridSize(int newWidth, int newHeight, int newCellSize)
     ResetGenerationCount();
 }
 
-void Simulation::InitilizeActiveAgents()
+void Simulation::RefreshActiveAgents()
 {
-    if (IsRunning() && currentGeneration == 0) {
-        for (int row = 0; row < grid.GetRows(); row++)
-        {
-            for (int column = 0; column < grid.GetColumns(); column++)
-            {
-                if (grid.GetCellTypeAt(row, column) != CellType::EMPTYCELL) {
-                    GridElement* element = grid.GetAgentAt(row, column);
-                    if (element) {
-						activeAgents.push_back(element);
-                    }
-                }
-            }
-        }
-    }
+    activeAgents.clear();
+
+	for (int row = 0; row < grid.GetRows(); row++)
+	{
+		for (int column = 0; column < grid.GetColumns(); column++)
+		{
+			if (grid.GetCellTypeAt(row, column) != CellType::EMPTYCELL) {
+				GridElement* element = grid.GetAgentAt(row, column);
+				if (element) {
+					activeAgents.push_back(element);
+				}
+			}
+		}
+	}
 }
 
 void Simulation::PrintActiveAgents() {
-    if (IsRunning()) {
+    if (IsRunning() && !activeAgents.empty()) {
         std::cout << "=== Active Agents (" << activeAgents.size() << ") ===" << std::endl;
         for (size_t i = 0; i < activeAgents.size(); ++i) {
             std::cout << "Agent " << i << ": " << utils::EnumToString(activeAgents[i]->GetType()) << std::endl;
