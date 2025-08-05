@@ -11,7 +11,7 @@ void Bunny::prepare(Grid& grid) {
 }
 
 void Bunny::execute(Grid& grid) {
-	if (energy <= 0) {
+	if (energy <= 0 || age > 9) {
 		grid.RemoveElement(coordinates.first, coordinates.second);
 		return;
 	}

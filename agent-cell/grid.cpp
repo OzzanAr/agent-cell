@@ -115,7 +115,7 @@ void Grid::SetCell(int row, int column, std::unique_ptr<GridElement> element)
 
 void Grid::MoveElement(int fromRow, int fromColumn, int toRow, int toColumn)
 {
-    if (cells[toRow][toColumn]->GetType() != CellType::EMPTYCELL) return;
+    if (!IsCellEmpty(toRow, toColumn)) return;
 
 	cells[toRow][toColumn] = std::move(cells[fromRow][fromColumn]);
 	cells[fromRow][fromColumn] = std::make_unique<EmptyCell>();
@@ -126,6 +126,16 @@ void Grid::RemoveElement(int row, int column)
     if (IsWithinBounds(row, column)) {
         cells[row][column] = std::make_unique<EmptyCell>();
     }
+}
+
+bool Grid::IsCellEmpty(int row, int column)
+{
+    if (IsWithinBounds(row, column)) {
+        if (cells[row][column]->GetType() == CellType::EMPTYCELL)
+            return true;
+    }
+
+    return false;
 }
 
 void Grid::SetupGridCells(int cellRows, int cellCols)
