@@ -22,9 +22,8 @@ void Bunny::execute(Grid& grid) {
 
 	if (newCol >= grid.GetColumns()) return;
 
-	GridElement* target = grid.GetAgentAt(row, newCol);
-	if (target->GetType() == CellType::EMPTYCELL) {
+	if (grid.IsCellEmpty(row, newCol)) {
 		grid.MoveElement(row, col, row, newCol);
-		coordinates = { row, newCol };
+		SetCoordinates(row, newCol);
 	}
 }
