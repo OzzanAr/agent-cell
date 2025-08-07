@@ -24,6 +24,8 @@ public:
 		return CellType::BUNNY;
 	}
 
+	void DetermineMove(Grid&);
+
 private:
 	int age;
 	int energy;
