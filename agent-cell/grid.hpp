@@ -7,6 +7,7 @@
 #include "bunny.hpp"
 #include "fox.hpp"
 #include "food.hpp"
+#include <optional>
 
 class Grid
 {
@@ -43,6 +44,7 @@ public:
     void MoveElement(int fromRow, int fromColumn, int toRow, int toColumn);
     void RemoveElement(int row, int column);
     bool IsCellEmpty(int row, int column);
+    std::optional<std::pair<int, int>> FindEmptyNeighbour(std::pair<int, int> coordinates);
 
 private:
     int rows;

@@ -16,6 +16,10 @@ void Bunny::execute(Grid& grid) {
 		return;
 	}
 
+	if (wantsToReproduce && reproductionCooldown == 0) {
+		
+	}
+
 	DetermineMove(grid);
 }
 

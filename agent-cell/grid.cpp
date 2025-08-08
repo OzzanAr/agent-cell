@@ -138,6 +138,11 @@ bool Grid::IsCellEmpty(int row, int column)
     return false;
 }
 
+std::optional<std::pair<int, int>> Grid::FindEmptyNeighbour(std::pair<int, int> coordinates)
+{
+    return std::optional<std::pair<int, int>>();
+}
+
 void Grid::SetupGridCells(int cellRows, int cellCols)
 {
     cells.resize(cellRows);
