@@ -140,7 +140,16 @@ bool Grid::IsCellEmpty(int row, int column)
 
 std::optional<std::pair<int, int>> Grid::FindEmptyNeighbour(std::pair<int, int> coordinates)
 {
-    return std::optional<std::pair<int, int>>();
+    int currentRow, currentColumn;
+
+    for (const auto& offset : neighborOffsets) {
+		currentRow = coordinates.first + offset.first;
+		currentColumn = coordinates.second + offset.second;
+
+        if (IsCellEmpty(currentRow, currentColumn)) {
+            return std::pair<int, int>(currentRow, currentColumn);
+        }
+    }
 }
 
 void Grid::SetupGridCells(int cellRows, int cellCols)

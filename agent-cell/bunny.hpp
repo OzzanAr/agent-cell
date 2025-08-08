@@ -6,7 +6,7 @@ class Grid;
 class Bunny : public GridElement {
 public:
 	Bunny(int row, int column) : age(0), energy(10), reproductionCooldown(0),
-		facing(Direction::NORTH), wantsToReproduce(false) {
+		facing(Direction::NORTH), wantsToReproduce(true) {
 		value = 1;
 		color = PINK;
 		SetCoordinates(row, column);

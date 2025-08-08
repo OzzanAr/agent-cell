@@ -17,7 +17,17 @@ void Bunny::execute(Grid& grid) {
 	}
 
 	if (wantsToReproduce && reproductionCooldown == 0) {
-		
+		auto emptyNeighbor = grid.FindEmptyNeighbour(coordinates);
+
+		if (emptyNeighbor) {
+			grid.SetCell(emptyNeighbor->first, emptyNeighbor->second, std::make_unique<Bunny>(emptyNeighbor->first, emptyNeighbor->second));
+			energy -= 2;
+			reproductionCooldown = 5;
+		}
+	}
+
+	if (reproductionCooldown > 0) {
+		reproductionCooldown--;
 	}
 
 	DetermineMove(grid);
@@ -26,7 +36,7 @@ void Bunny::execute(Grid& grid) {
 void Bunny::DetermineMove(Grid& grid)
 {
 	std::vector<std::pair<int, int>> validMoves;
-	int newRow, newColumn;
+	int newRow, newColumn; 
 
 	for (const auto& offset : neighborOffsets) {
 		newRow = coordinates.first + offset.first;
