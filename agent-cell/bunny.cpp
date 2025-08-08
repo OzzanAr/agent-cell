@@ -16,12 +16,6 @@ void Bunny::execute(Grid& grid) {
 		return;
 	}
 
-	int row = coordinates.first;
-	int col = coordinates.second;
-	int newCol = col + 1;
-
-	if (newCol >= grid.GetColumns()) return;
-
 	DetermineMove(grid);
 }
 
