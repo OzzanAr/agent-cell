@@ -5,9 +5,11 @@ void Bunny::prepare(Grid& grid) {
 	age++;
 	energy--;
 
-	if (energy <= 0) {
-		return;
-	}
+	if (energy <= 0) return;
+
+	if (age == 1) wantsToReproduce = true;
+
+	DetermineMove(grid);
 }
 
 void Bunny::execute(Grid& grid) {
@@ -16,13 +18,13 @@ void Bunny::execute(Grid& grid) {
 		return;
 	}
 
-	if (wantsToReproduce && reproductionCooldown == 0) {
+	if (wantsToReproduce && reproductionCooldown != 0) {
 		auto emptyNeighbor = grid.FindEmptyNeighbour(coordinates);
 
 		if (emptyNeighbor) {
 			grid.SetCell(emptyNeighbor->first, emptyNeighbor->second, std::make_unique<Bunny>(emptyNeighbor->first, emptyNeighbor->second));
 			energy -= 2;
-			reproductionCooldown = 5;
+			reproductionCooldown = 6;
 		}
 	}
 
@@ -30,7 +32,8 @@ void Bunny::execute(Grid& grid) {
 		reproductionCooldown--;
 	}
 
-	DetermineMove(grid);
+	grid.MoveElement(coordinates.first, coordinates.second, targetMove.first, targetMove.second);
+	SetCoordinates(targetMove.first, targetMove.second);
 }
 
 void Bunny::DetermineMove(Grid& grid)
@@ -51,7 +54,6 @@ void Bunny::DetermineMove(Grid& grid)
 		int index = GetRandomValue(0, validMoves.size() - 1);
 		std::pair<int, int> move = validMoves[index];
 
-		grid.MoveElement(coordinates.first, coordinates.second, move.first, move.second);
-		SetCoordinates(move.first, move.second);
+		targetMove = move;
 	}
 }

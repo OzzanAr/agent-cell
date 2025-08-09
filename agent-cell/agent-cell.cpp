@@ -124,7 +124,7 @@ int main()
             simulation.ResetGenerationCount();
         }
 
-        if (GuiButton(Rectangle{ 24, 1050, 150, 100}, "INCREASE")) {
+        if (GuiButton(Rectangle{ 24, 850, 150, 100}, "INCREASE")) {
             newGridCols += 10;
             newGridRows += 5;
 
@@ -132,7 +132,7 @@ int main()
             simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
         };
 
-        if (GuiButton(Rectangle{ 180, 1050, 150, 100}, "DECREASE")) {
+        if (GuiButton(Rectangle{ 180, 850, 150, 100}, "DECREASE")) {
             newGridCols -= 10;
             newGridRows -= 5;
 
