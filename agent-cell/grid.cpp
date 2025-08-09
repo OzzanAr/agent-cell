@@ -3,13 +3,22 @@
 #include <raylib.h>
 #include <iostream>
 
-void Grid::Draw()
+void Grid::Draw(std::vector<GridElement*> activeAgents)
 {
+
     for (int row = 0; row < rows; row++)
     {
         for (int col = 0; col < cols; col++)
         {
-            Color cellColor = cells[row][col]->GetColor();
+            Color cellColor = CUSTOM_GREY;
+
+            if (!activeAgents.empty()) {
+                for (auto agent : activeAgents) {
+                    if (agent->GetCoordinates().first == row && agent->GetCoordinates().second == col) {
+						cellColor = agent->GetColor();
+                    }
+                }
+            }
 
             // Minus one on the width and height of the CellSize when drawing the rectangles to display grid lines.
             DrawRectangle(col * cellSize + offsetLeft, row * cellSize + offsetTop, cellSize - 1, cellSize - 1, cellColor);

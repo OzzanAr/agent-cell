@@ -18,7 +18,7 @@ public:
         CalculateOffsetValues();
     };
 
-    void Draw();
+    void Draw(std::vector<GridElement*> activeAgents);
 
     void SetupGridCells(int width, int height);
     void DeepCopyGrid(const Grid& copiedGrid);
