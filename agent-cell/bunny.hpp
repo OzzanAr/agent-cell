@@ -25,6 +25,7 @@ public:
 	}
 
 	void DetermineMove(Grid&);
+	void Reproduce(Grid&);
 
 private:
 	int age;
