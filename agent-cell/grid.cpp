@@ -81,8 +81,8 @@ void Grid::ToggleCellValue(int row, int column, CellType cellType)
             case FOX:
 				cells[row][column] = std::make_unique<Fox>(row, column);
                 break;
-            case FOOD:
-				cells[row][column] = std::make_unique<Food>(row, column);
+            case GRASS:
+				cells[row][column] = std::make_unique<Grass>(row, column);
                 break;
         }
     }

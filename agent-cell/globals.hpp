@@ -23,14 +23,14 @@ enum CellType {
 	EMPTYCELL,
 	BUNNY,
 	FOX,
-	FOOD
+	GRASS
 };
 
 static std::map<CellType, std::string> MappedCellType = {
 	{EMPTYCELL, "Empty"},
 	{BUNNY, "Bunny"},
 	{FOX, "Fox"},
-	{FOOD, "Food"},
+	{GRASS, "Grass"},
 };
 
 enum Direction {

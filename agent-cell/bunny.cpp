@@ -2,16 +2,16 @@
 #include "grid.hpp"
 
 void Bunny::prepare(Grid& grid) {
-	age++;
-	energy--;
+	// age++;
+	//energy--;
 
-	if (energy <= 0) return;
+	//if (energy <= 0) return;
 
-	if (age >= 1) wantsToReproduce = true;
+	//if (age >= 1) wantsToReproduce = true;
 
-	if (reproductionCooldown > 0) {
-		reproductionCooldown--;
-	}
+	//if (reproductionCooldown > 0) {
+	//	reproductionCooldown--;
+	//}
 
 	DetermineMove(grid);
 }
@@ -23,7 +23,7 @@ void Bunny::execute(Grid& grid) {
 	}
 
 	// Handling the behaviors
-	Reproduce(grid);
+	// Reproduce(grid);
 
 	grid.MoveElement(coordinates.first, coordinates.second, targetMove.first, targetMove.second);
 	SetCoordinates(targetMove.first, targetMove.second);

@@ -148,8 +148,8 @@ int main()
         if (GuiButton(Rectangle{ btnXStart + btnWidth + spacing, btnY, btnWidth, btnHeight }, utils::EnumToString(FOX).c_str())) {
             inputType = FOX;
         }
-        if (GuiButton(Rectangle{ btnXStart + 2 * (btnWidth + spacing), btnY, btnWidth, btnHeight }, utils::EnumToString(FOOD).c_str())) {
-            inputType = FOOD;
+        if (GuiButton(Rectangle{ btnXStart + 2 * (btnWidth + spacing), btnY, btnWidth, btnHeight }, utils::EnumToString(GRASS).c_str())) {
+            inputType = GRASS;
         }
 
         inputTypeStr = "SELECTED: " + utils::EnumToString(inputType);
