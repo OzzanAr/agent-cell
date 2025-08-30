@@ -56,7 +56,7 @@
     <ClInclude Include="fox.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="food.hpp">
+    <ClInclude Include="grass.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utils.hpp">
