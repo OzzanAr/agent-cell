@@ -22,8 +22,8 @@ void Bunny::execute(Grid& grid) {
 		return;
 	}
 
-	 // Handling the behaviors
-	 Reproduce(grid);
+	// Handling the behaviors
+	Reproduce(grid);
 
 	grid.MoveElement(coordinates.first, coordinates.second, targetMove.first, targetMove.second);
 	SetCoordinates(targetMove.first, targetMove.second);

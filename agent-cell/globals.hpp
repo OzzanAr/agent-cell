@@ -34,10 +34,10 @@ static std::map<CellType, std::string> MappedCellType = {
 };
 
 enum Direction {
-	NORTH,
-	EAST,
-	SOUTH,
-	WEST	
+	NORTH, // x-axis static; y-axis minus 
+	SOUTH, // x-axis static; y-axis add 
+	EAST, // x-axis add; y-axis static
+	WEST // x-axis minus; y-axis static
 };
 
 static std::vector<std::pair<int, int>> neighborOffsets = {
