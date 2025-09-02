@@ -23,7 +23,7 @@ void Bunny::execute(Grid& grid) {
 	}
 
 	// Handling the behaviors
-	Reproduce(grid);
+	// Reproduce(grid);
 
 	grid.MoveElement(coordinates.first, coordinates.second, targetMove.first, targetMove.second);
 	SetCoordinates(targetMove.first, targetMove.second);
@@ -34,7 +34,7 @@ void Bunny::DetermineMove(Grid& grid)
 	std::vector<std::pair<int, int>> validMoves;
 	int newRow, newColumn; 
 
-	for (const auto& offset : neighborOffsets) {
+	for (const auto& offset : southOffsets) {
 		newRow = coordinates.first + offset.first;
 		newColumn = coordinates.second + offset.second;
 

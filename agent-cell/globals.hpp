@@ -50,3 +50,21 @@ static std::vector<std::pair<int, int>> neighborOffsets = {
         {1, -1},  // Lower Left
         {1, 1},   // Lower right
     };
+
+static std::vector<std::pair<int, int>> northOffsets = {
+        {-1, 0},  // Above
+        {-1, -1}, // Upper left
+        {-1, 1},  // Upper right
+        {-2, 0},  // Two above 
+        {-2, -1}, // Two Upper left
+        {-2, 1},  // Two Upper right
+    };
+
+static std::vector<std::pair<int, int>> southOffsets = {
+        {1, 0},   // Below
+        {1, -1},  // Lower Left
+        {1, 1},   // Lower right
+        {2, 0},   // Two Below
+        {2, -1},  // Two Lower Left
+        {2, 1},   // Two Lower right
+    };
