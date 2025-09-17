@@ -34,7 +34,7 @@ void Bunny::DetermineMove(Grid& grid)
 	std::vector<std::pair<int, int>> validMoves;
 	int newRow, newColumn; 
 
-	for (const auto& offset : westOffsets) {
+	for (const auto& offset : utils::GetFacingDirection(facing)) {
 		newRow = coordinates.first + offset.first;
 		newColumn = coordinates.second + offset.second;
 

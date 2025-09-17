@@ -5,4 +5,9 @@ namespace utils {
 	{
 		return MappedCellType[type];
 	}
+
+	std::vector<std::pair<int, int>> GetFacingDirection(Direction direction)
+	{
+		return MappedDirections[direction];
+	}
 }
