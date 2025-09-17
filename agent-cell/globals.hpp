@@ -51,7 +51,7 @@ static std::vector<std::pair<int, int>> neighborOffsets = {
         {1, 1},   // Lower right
     };
 
-static std::vector<std::pair<int, int>> northOffsets = {
+static std::vector<std::pair<int, int>> NorthOffsets = {
         {-1, 0},  // Above
         {-1, -1}, // Upper left
         {-1, 1},  // Upper right
@@ -60,7 +60,7 @@ static std::vector<std::pair<int, int>> northOffsets = {
         {-2, 1},  // Two Upper right
     };
 
-static std::vector<std::pair<int, int>> southOffsets = {
+static std::vector<std::pair<int, int>> SouthOffsets = {
         {1, 0},   // Below
         {1, -1},  // Lower Left
         {1, 1},   // Lower right
@@ -68,3 +68,28 @@ static std::vector<std::pair<int, int>> southOffsets = {
         {2, -1},  // Two Lower Left
         {2, 1},   // Two Lower right
     };
+
+static std::vector<std::pair<int, int>> EastOffsets = {
+        {0, 1},   // Straight right 
+        {-1, 1},  // Upper right 
+        {1, 1},   // Lower right 
+        {0, 2},   // Two straight left
+        {-1, 2},  // Two Upper right 
+        {1, 2},   // Two Lower right 
+    };
+
+static std::vector<std::pair<int, int>> WestOffsets = {
+        {0, -1},   // Straight left 
+        {-1, -1},   // Upper left 
+        {1, -1},   // Lower left 
+        {0, -2},   // Two straight left
+        {-1, -2},   // Two Upper left 
+        {1, -2},   // Two Lower left 
+    };
+
+static std::map<Direction, std::vector<std::pair<int, int>>> MappedDirections = {
+	{NORTH, NorthOffsets},
+	{SOUTH, SouthOffsets},
+	{EAST, EastOffsets},
+	{WEST, WestOffsets},
+};
