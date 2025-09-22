@@ -9,13 +9,9 @@ public:
 		SetCoordinates(row, column);
 	}
 
-	void prepare(Grid&) override {
-		// Skip for now
-	}
+	void prepare(Grid&) override;
 
-	void execute(Grid&) override {
-		// Skip for now
-	}
+	void execute(Grid&) override;
 
 	std::unique_ptr<GridElement> clone() const override {
 		return std::make_unique<Grass>(*this);

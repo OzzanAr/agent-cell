@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="agent-cell.cpp" />
     <ClCompile Include="bunny.cpp" />
+    <ClCompile Include="grass.cpp" />
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="gridElement.cpp" />
     <ClCompile Include="simulation.cpp" />

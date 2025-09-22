@@ -13,6 +13,9 @@ void Bunny::prepare(Grid& grid) {
 		reproductionCooldown--;
 	}
 
+	int randomNum = GetRandomValue(0, 1);
+	facing = (randomNum == 1) ? SOUTH : EAST;
+
 	DetermineMove(grid);
 }
 
