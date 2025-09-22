@@ -6,7 +6,7 @@
 #include "emptyCell.hpp"
 #include "bunny.hpp"
 #include "fox.hpp"
-#include "food.hpp"
+#include "grass.hpp"
 #include <optional>
 
 class Grid

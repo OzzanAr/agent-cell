@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "globals.hpp"
+#include "utils.hpp"
 #include <memory>
 #include <vector>
 

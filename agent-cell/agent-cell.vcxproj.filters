@@ -33,6 +33,9 @@
     <ClCompile Include="bunny.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="grass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.hpp">
@@ -56,7 +59,7 @@
     <ClInclude Include="fox.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="food.hpp">
+    <ClInclude Include="grass.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utils.hpp">
