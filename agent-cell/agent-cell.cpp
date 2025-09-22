@@ -80,7 +80,8 @@ int main()
             simulation.CalculateMouseOffset(row, col);
             simulation.ToggleCell(row, col, inputType);
         }
-        else if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
+        else if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
+        {
             simulation.CalculateMouseOffset(row, col);
             simulation.ToggleCell(row, col, CellType::EMPTYCELL);
         }
@@ -136,8 +137,14 @@ int main()
             newGridCols -= 10;
             newGridRows -= 5;
 
-            CalculateCellSize(cellSize, newGridCols, newGridRows);
-            simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
+            if (!(newGridCols <= 0 || newGridRows <= 0)) {
+				CalculateCellSize(cellSize, newGridCols, newGridRows);
+				simulation.UpdateGridSize(newGridCols, newGridRows, cellSize);
+            }
+            else {
+                newGridCols = 10;
+                newGridRows = 5;
+            }
         };
 
 		CalculateButtonPositions(btnWidth, btnHeight, btnY, spacing, btnXStart, windowWidth, windowHeight);
