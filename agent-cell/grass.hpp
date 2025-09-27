@@ -4,7 +4,6 @@
 class Grass : public GridElement {
 public:
 	Grass(int row, int column) {
-		value = 3;
 		color = GREEN;
 		SetCoordinates(row, column);
 	}
@@ -20,4 +19,8 @@ public:
 	CellType GetType() const override {
 		return CellType::GRASS;
 	}
+
+private:
+	std::pair<int, int> targetSpawn;
+
 };

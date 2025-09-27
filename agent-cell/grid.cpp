@@ -5,7 +5,6 @@
 
 void Grid::Draw(std::vector<GridElement*> activeAgents)
 {
-
     for (int row = 0; row < rows; row++)
     {
         for (int col = 0; col < cols; col++)
@@ -26,23 +25,6 @@ void Grid::Draw(std::vector<GridElement*> activeAgents)
     }
 }
 
-void Grid::SetCellValue(int row, int column, int value)
-{
-    if (IsWithinBounds(row, column))
-    {
-        cells[row][column]->SetValue(value);
-    }
-}
-
-int Grid::GetCellValue(int row, int column)
-{
-    if (IsWithinBounds(row, column))
-    {
-        return cells[row][column]->GetValue();
-    }
-    return 0;
-}
-
 bool Grid::IsWithinBounds(int row, int column)
 {
 
@@ -53,25 +35,13 @@ bool Grid::IsWithinBounds(int row, int column)
     return false;
 }
 
-void Grid::FillRandomly()
-{
-    for (int row = 0; row < rows; row++)
-    {
-        for (int col = 0; col < cols; col++)
-        {
-            int randValue = GetRandomValue(0, 4);
-            cells[row][col]->SetValue((randValue == 4) ? 1 : 0);
-        }
-    }
-}
-
 void Grid::Clear()
 {
     for (int row = 0; row < rows; row++)
     {
         for (int col = 0; col < cols; col++)
         {
-            cells[row][col]->SetValue(0);
+            cells[row][col] = std::make_unique<EmptyCell>();
         }
     }
 }
@@ -159,6 +129,28 @@ std::optional<std::pair<int, int>> Grid::FindEmptyNeighbour(std::pair<int, int> 
             return std::pair<int, int>(currentRow, currentColumn);
         }
     }
+}
+
+std::pair<int, int> Grid::GetRandomEmptyCell()
+{
+    int rows = cells.size();
+    int cols = cells[0].size();
+
+    int randomPos = GetRandomValue(1, rows);
+
+    for (int currentColumn = 0; currentColumn < cols; currentColumn++) {
+        for (int currentRow = 0; currentRow < randomPos; currentRow++) {
+            if (IsCellEmpty(currentRow, currentColumn)) {
+				return std::pair<int, int>(currentRow, currentColumn);
+            }
+        }
+    }
+}
+
+void Grid::CreateGrass(int row, int column)
+{
+    std::unique_ptr<Grass> grass = std::make_unique<Grass>(row, column);
+    cells[row][column] = std::move(grass);
 }
 
 void Grid::SetupGridCells(int cellRows, int cellCols)

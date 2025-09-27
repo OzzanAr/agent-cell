@@ -23,10 +23,6 @@ void Simulation::Update()
     }
 }
 
-void Simulation::SetCellValue(int row, int column, int value) {
-    grid.SetCellValue(row, column, value);
-}
-
 void Simulation::ClearGrid()
 {
     if (!IsRunning())
@@ -39,7 +35,7 @@ void Simulation::CreateRandomState()
 {
     if (!IsRunning())
     {
-        grid.FillRandomly();
+        // grid.FillRandomly();
     }
 }
 

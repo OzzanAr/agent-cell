@@ -4,7 +4,6 @@
 class EmptyCell : public GridElement {
 public:
 	EmptyCell() {
-		value = 0;
 		color = CUSTOM_GREY;
 	}
 

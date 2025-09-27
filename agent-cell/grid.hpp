@@ -45,6 +45,8 @@ public:
     void RemoveElement(int row, int column);
     bool IsCellEmpty(int row, int column);
     std::optional<std::pair<int, int>> FindEmptyNeighbour(std::pair<int, int> coordinates);
+    std::pair<int, int> GetRandomEmptyCell();
+    void CreateGrass(int row, int column);
 
 private:
     int rows;

@@ -4,7 +4,6 @@
 class Fox : public GridElement {
 public:
 	Fox(int row, int column) {
-		value = 2;
 		color = RED;
 		isSeen = false;
 		SetCoordinates(row, column);
