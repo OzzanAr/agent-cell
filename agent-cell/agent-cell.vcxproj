@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bunny.hpp" />
+    <ClInclude Include="cell.hpp" />
     <ClInclude Include="emptyCell.hpp" />
     <ClInclude Include="grass.hpp" />
     <ClInclude Include="fox.hpp" />
